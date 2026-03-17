@@ -5,1949 +5,1126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WORKOUT-APP</title>
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
---primary: #ff8c00;
---primary-dark: #e67e00;
---secondary: #1a3a5c;
---secondary-light: #2d5a87;
---light: #f5f7fa;
---white: #ffffff;
---shadow: 0 4px 12px rgba(0,0,0,0.15);
---gradient: linear-gradient(135deg, #ff8c00 0%, #ffaa00 100%);
+  --primary: #ff8c00; --primary-dark: #e67e00; --secondary: #1a3a5c;
+  --secondary-light: #2d5a87; --light: #f5f7fa; --white: #ffffff;
+  --shadow: 0 4px 12px rgba(0,0,0,0.15);
+  --gradient: linear-gradient(135deg, #ff8c00 0%, #ffaa00 100%);
 }
 body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-color: var(--secondary);
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  color: var(--secondary); min-height: 100vh; display: flex; flex-direction: column;
 }
-/* Navigation - Dunkelblau */
 .navbar {
-background: var(--secondary);
-color: var(--white);
-padding: 15px 20px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: sticky;
-top: 0;
-z-index: 1000;
-box-shadow: 0 4px 20px rgba(26, 58, 92, 0.3);
+  background: var(--secondary); color: var(--white); padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000;
+  box-shadow: 0 4px 20px rgba(26, 58, 92, 0.3);
 }
-.nav-left, .nav-right {
-display: flex;
-align-items: center;
-gap: 15px;
-}
+.nav-left, .nav-right { display: flex; align-items: center; gap: 15px; }
 .app-title {
-font-size: 1.5rem;
-font-weight: 800;
-color: var(--white);
-text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-cursor: pointer;
-transition: all 0.2s;
+  font-size: 1.5rem; font-weight: 800; color: var(--white);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.2s;
 }
-.app-title:hover {
-opacity: 0.9;
-transform: scale(1.02);
-}
+.app-title:hover { opacity: 0.9; transform: scale(1.02); }
 .nav-btn {
-background: rgba(255,255,255,0.2);
-border: 2px solid var(--white);
-color: var(--white);
-padding: 8px 16px;
-border-radius: 25px;
-cursor: pointer;
-font-weight: 600;
-transition: all 0.3s;
+  background: rgba(255,255,255,0.2); border: 2px solid var(--white);
+  color: var(--white); padding: 8px 16px; border-radius: 25px;
+  cursor: pointer; font-weight: 600; transition: all 0.3s;
 }
-.nav-btn:hover {
-background: var(--white);
-color: var(--primary);
-transform: translateY(-2px);
-}
-.nav-btn.active {
-background: var(--white);
-color: var(--primary);
-}
-/* Container */
-.container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 20px;
-flex: 1;
-width: 100%;
-}
-/* Sections */
-.section {
-display: none;
-animation: fadeIn 0.5s;
-}
-.section.active {
-display: block;
-}
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-/* Setup Card */
+.nav-btn:hover { background: var(--white); color: var(--primary); transform: translateY(-2px); }
+.nav-btn.active { background: var(--white); color: var(--primary); }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; flex: 1; width: 100%; }
+.section { display: none; animation: fadeIn 0.5s; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
 .setup-card {
-background: var(--white);
-padding: 40px;
-border-radius: 20px;
-box-shadow: var(--shadow);
-max-width: 700px;
-margin: 40px auto;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 40px; border-radius: 20px;
+  box-shadow: var(--shadow); max-width: 700px; margin: 40px auto;
+  border-top: 5px solid var(--primary);
 }
-.setup-card h2 {
-color: var(--secondary);
-margin-bottom: 15px;
-font-size: 1.8rem;
-}
-.setup-card p {
-color: #666;
-margin-bottom: 25px;
-line-height: 1.6;
-}
-.form-group {
-margin-bottom: 30px;
-}
-.form-group label {
-display: block;
-margin-bottom: 15px;
-font-weight: 700;
-color: var(--secondary);
-font-size: 1.1rem;
-}
-.checkbox-group {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-gap: 12px;
-}
+.setup-card h2 { color: var(--secondary); margin-bottom: 15px; font-size: 1.8rem; }
+.setup-card p { color: #666; margin-bottom: 25px; line-height: 1.6; }
+.form-group { margin-bottom: 30px; }
+.form-group label { display: block; margin-bottom: 15px; font-weight: 700; color: var(--secondary); font-size: 1.1rem; }
+.checkbox-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .checkbox-item {
-display: flex;
-align-items: center;
-gap: 10px;
-padding: 12px;
-background: var(--light);
-border-radius: 10px;
-cursor: pointer;
-transition: all 0.3s;
-border: 2px solid transparent;
+  display: flex; align-items: center; gap: 10px; padding: 12px;
+  background: var(--light); border-radius: 10px; cursor: pointer;
+  transition: all 0.3s; border: 2px solid transparent;
 }
-.checkbox-item:hover {
-background: #fff5e6;
-border-color: var(--primary);
-}
-.checkbox-item input {
-width: 20px;
-height: 20px;
-accent-color: var(--primary);
-}
-.radio-group {
-display: flex;
-gap: 20px;
-flex-wrap: wrap;
-}
+.checkbox-item:hover { background: #fff5e6; border-color: var(--primary); }
+.checkbox-item input { width: 20px; height: 20px; accent-color: var(--primary); }
+.radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
 .radio-item {
-display: flex;
-align-items: center;
-gap: 8px;
-padding: 12px 20px;
-background: var(--light);
-border-radius: 10px;
-cursor: pointer;
+  display: flex; align-items: center; gap: 8px; padding: 12px 20px;
+  background: var(--light); border-radius: 10px; cursor: pointer;
 }
-.radio-item:hover {
-background: #fff5e6;
-}
-.radio-item input {
-width: 18px;
-height: 18px;
-accent-color: var(--primary);
-}
+.radio-item:hover { background: #fff5e6; }
+.radio-item input { width: 18px; height: 18px; accent-color: var(--primary); }
+
 .btn {
-background: var(--gradient);
-color: var(--white);
-border: none;
-padding: 15px 40px;
-border-radius: 30px;
-font-size: 1.1rem;
-font-weight: 700;
-cursor: pointer;
-transition: all 0.3s;
-width: 100%;
-box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  background: var(--gradient); color: var(--white); border: none;
+  padding: 15px 40px; border-radius: 30px; font-size: 1.1rem;
+  font-weight: 700; cursor: pointer; transition: all 0.3s; width: 100%;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
 }
-.btn:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
-}
-.btn-secondary {
-background: var(--secondary);
-}
-.btn-success {
-background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-}
-/* Schedule Panel */
+.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5); }
+.btn-secondary { background: var(--secondary); }
+.btn-success { background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); }
+
 .schedule-panel {
-background: var(--white);
-padding: 25px;
-border-radius: 15px;
-box-shadow: var(--shadow);
-margin-bottom: 20px;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 25px; border-radius: 15px;
+  box-shadow: var(--shadow); margin-bottom: 20px; border-top: 5px solid var(--primary);
 }
-.schedule-panel h3 {
-color: var(--secondary);
-margin-bottom: 10px;
-font-size: 1.3rem;
-}
-.schedule-panel p {
-color: #666;
-margin-bottom: 15px;
-font-size: 0.95rem;
-}
-.schedule-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-gap: 10px;
-}
+.schedule-panel h3 { color: var(--secondary); margin-bottom: 10px; font-size: 1.3rem; }
+.schedule-panel p { color: #666; margin-bottom: 15px; font-size: 0.95rem; }
+.schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
 .schedule-day {
-background: var(--light);
-padding: 15px;
-border-radius: 10px;
-text-align: center;
-border: 2px solid transparent;
-cursor: pointer;
-transition: all 0.3s;
+  background: var(--light); padding: 15px; border-radius: 10px;
+  text-align: center; border: 2px solid transparent; cursor: pointer; transition: all 0.3s;
 }
-.schedule-day:hover {
-border-color: var(--primary);
-background: #fff5e6;
-}
-.schedule-day.selected {
-border-color: var(--primary);
-background: var(--gradient);
-color: var(--white);
-}
-.schedule-day-name {
-font-weight: 700;
-margin-bottom: 8px;
-}
-.schedule-day-workouts {
-display: flex;
-flex-wrap: wrap;
-gap: 4px;
-justify-content: center;
-}
+.schedule-day:hover { border-color: var(--primary); background: #fff5e6; }
+.schedule-day.selected { border-color: var(--primary); background: var(--gradient); color: var(--white); }
+.schedule-day-name { font-weight: 700; margin-bottom: 8px; }
+.schedule-day-workouts { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
 .schedule-day-workout {
-font-size: 0.75rem;
-padding: 3px 8px;
-background: var(--primary);
-color: var(--white);
-border-radius: 10px;
+  font-size: 0.75rem; padding: 3px 8px; background: var(--primary);
+  color: var(--white); border-radius: 10px;
 }
-.schedule-day.selected .schedule-day-workout {
-background: var(--white);
-color: var(--primary);
-}
-.schedule-day.empty .schedule-day-workout {
-background: #ccc;
-}
-/* Calendar */
+.schedule-day.selected .schedule-day-workout { background: var(--white); color: var(--primary); }
+.schedule-day.empty .schedule-day-workout { background: #ccc; }
+
 .calendar-container {
-background: var(--white);
-padding: 25px;
-border-radius: 15px;
-box-shadow: var(--shadow);
-margin-bottom: 20px;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 25px; border-radius: 15px;
+  box-shadow: var(--shadow); margin-bottom: 20px; border-top: 5px solid var(--primary);
 }
-.calendar-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-flex-wrap: wrap;
-gap: 10px;
-}
-.calendar-nav {
-display: flex;
-gap: 8px;
-}
-.calendar-grid {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-gap: 5px;
-}
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+.calendar-nav { display: flex; gap: 8px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
 .calendar-day-header {
-text-align: center;
-font-weight: 700;
-padding: 10px;
-background: var(--secondary);
-color: var(--white);
-border-radius: 8px;
-font-size: 0.9rem;
+  text-align: center; font-weight: 700; padding: 10px;
+  background: var(--secondary); color: var(--white); border-radius: 8px; font-size: 0.9rem;
 }
 .calendar-day {
-aspect-ratio: 1;
-min-height: 80px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: flex-start;
-border: 2px solid #e0e0e0;
-border-radius: 10px;
-cursor: pointer;
-transition: all 0.3s;
-padding: 5px;
+  aspect-ratio: 1; min-height: 80px; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start; border: 2px solid #e0e0e0;
+  border-radius: 10px; cursor: pointer; transition: all 0.3s; padding: 5px;
 }
-.calendar-day:hover {
-border-color: var(--primary);
-background: #fff5e6;
-}
-.calendar-day.today {
-border-color: var(--primary);
-background: var(--gradient);
-color: var(--white);
-}
-.calendar-day.has-workout {
-border-color: var(--primary);
-background: #fff5e6;
-}
+.calendar-day:hover { border-color: var(--primary); background: #fff5e6; }
+.calendar-day.today { border-color: var(--primary); background: var(--gradient); color: var(--white); }
+.calendar-day.has-workout { border-color: var(--primary); background: #fff5e6; }
 .calendar-day.has-workout::after {
-content: '✓';
-position: absolute;
-bottom: 5px;
-right: 5px;
-color: var(--primary);
-font-weight: 900;
+  content: '✓'; position: absolute; bottom: 5px; right: 5px;
+  color: var(--primary); font-weight: 900;
 }
-.calendar-day.today.has-workout::after {
-color: var(--white);
-}
-.day-number {
-font-size: 1.2rem;
-font-weight: 700;
-margin-bottom: 5px;
-}
+.calendar-day.today.has-workout::after { color: var(--white); }
+.day-number { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
 .day-workout {
-font-size: 0.65rem;
-text-align: center;
-background: var(--primary);
-color: var(--white);
-padding: 2px 6px;
-border-radius: 8px;
-margin-top: 2px;
+  font-size: 0.65rem; text-align: center; background: var(--primary);
+  color: var(--white); padding: 2px 6px; border-radius: 8px; margin-top: 2px;
 }
-.calendar-day.today .day-workout {
-background: var(--white);
-color: var(--primary);
-}
-/* Workout Card */
+.calendar-day.today .day-workout { background: var(--white); color: var(--primary); }
+
 .workout-card {
-background: var(--white);
-padding: 30px;
-border-radius: 15px;
-box-shadow: var(--shadow);
-margin-top: 20px;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 30px; border-radius: 15px;
+  box-shadow: var(--shadow); margin-top: 20px; border-top: 5px solid var(--primary);
 }
 .workout-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-padding-bottom: 15px;
-border-bottom: 2px solid var(--light);
-flex-wrap: wrap;
-gap: 15px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid var(--light); flex-wrap: wrap; gap: 15px;
 }
-.workout-title {
-color: var(--secondary);
-font-size: 1.8rem;
-font-weight: 800;
-}
-.workout-subtitle {
-color: #666;
-font-size: 0.95rem;
-margin-top: 5px;
-}
+.workout-title { color: var(--secondary); font-size: 1.8rem; font-weight: 800; }
+.workout-subtitle { color: #666; font-size: 0.95rem; margin-top: 5px; }
+
 .muscle-section {
-margin-bottom: 25px;
-padding: 20px;
-background: var(--light);
-border-radius: 12px;
-border-left: 4px solid var(--primary);
+  margin-bottom: 25px; padding: 20px; background: var(--light);
+  border-radius: 12px; border-left: 4px solid var(--primary);
 }
-.muscle-title {
-color: var(--secondary);
-font-size: 1.3rem;
-font-weight: 700;
-margin-bottom: 15px;
-}
-.exercise-list {
-list-style: none;
-}
+.muscle-title { color: var(--secondary); font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
+.exercise-list { list-style: none; }
 .exercise-item {
-background: var(--white);
-padding: 20px;
-margin-bottom: 15px;
-border-radius: 10px;
-border-left: 4px solid var(--primary);
+  background: var(--white); padding: 20px; margin-bottom: 15px;
+  border-radius: 10px; border-left: 4px solid var(--primary);
 }
 .exercise-name {
-font-size: 1.2rem;
-font-weight: 700;
-margin-bottom: 10px;
-color: var(--secondary);
+  font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--secondary);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
 }
-.exercise-info {
-display: flex;
-gap: 15px;
-flex-wrap: wrap;
-margin-bottom: 15px;
-}
+.exercise-info { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
 .exercise-info span {
-background: var(--primary);
-color: var(--white);
-padding: 5px 12px;
-border-radius: 15px;
-font-size: 0.85rem;
-font-weight: 600;
+  background: var(--primary); color: var(--white); padding: 5px 12px;
+  border-radius: 15px; font-size: 0.85rem; font-weight: 600;
 }
-.exercise-inputs {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-gap: 12px;
-margin-top: 15px;
-}
-.input-group {
-display: flex;
-flex-direction: column;
-gap: 5px;
-}
-.input-group label {
-font-size: 0.85rem;
-color: var(--secondary);
-font-weight: 600;
-}
+.exercise-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 15px; }
+.input-group { display: flex; flex-direction: column; gap: 5px; }
+.input-group label { font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+.input-group small { font-size: 0.7rem; color: #666; font-weight: 400; }
 .input-group input {
-padding: 10px;
-border: 2px solid #ddd;
-border-radius: 8px;
-font-size: 1rem;
+  padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;
 }
-.input-group input:focus {
-outline: none;
-border-color: var(--primary);
-}
-/* Progress */
-.progress-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 20px;
-margin-top: 20px;
-}
+.input-group input:focus { outline: none; border-color: var(--primary); }
+
+.progress-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
 .progress-card {
-background: var(--white);
-padding: 25px;
-border-radius: 15px;
-box-shadow: var(--shadow);
-border-top: 4px solid var(--primary);
+  background: var(--white); padding: 25px; border-radius: 15px;
+  box-shadow: var(--shadow); border-top: 4px solid var(--primary);
 }
-.progress-card h3 {
-color: var(--secondary);
-margin-bottom: 15px;
-font-size: 1.2rem;
-}
-.progress-item {
-display: flex;
-justify-content: space-between;
-padding: 10px 0;
-border-bottom: 1px solid var(--light);
-}
-.progress-item:last-child {
-border-bottom: none;
-}
-.progress-value {
-font-weight: 700;
-color: var(--primary);
-}
-/* Profile */
+.progress-card h3 { color: var(--secondary); margin-bottom: 15px; font-size: 1.2rem; }
+.progress-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--light); }
+.progress-item:last-child { border-bottom: none; }
+.progress-value { font-weight: 700; color: var(--primary); }
+
 .profile-card {
-background: var(--white);
-padding: 35px;
-border-radius: 15px;
-box-shadow: var(--shadow);
-max-width: 600px;
-margin: 40px auto;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 35px; border-radius: 15px;
+  box-shadow: var(--shadow); max-width: 600px; margin: 40px auto;
+  border-top: 5px solid var(--primary);
 }
-.profile-card h2 {
-color: var(--secondary);
-margin-bottom: 20px;
-}
-.profile-avatar-section {
-text-align: center;
-margin-bottom: 25px;
-}
+.profile-card h2 { color: var(--secondary); margin-bottom: 20px; }
+.profile-avatar-section { text-align: center; margin-bottom: 25px; }
 .profile-avatar-preview {
-width: 120px;
-height: 120px;
-border-radius: 50%;
-margin: 0 auto 15px;
-background: var(--gradient);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 3rem;
-color: var(--white);
-border: 4px solid var(--primary);
-box-shadow: var(--shadow);
+  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 15px;
+  background: var(--gradient); display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; color: var(--white); border: 4px solid var(--primary); box-shadow: var(--shadow);
 }
-.profile-avatar-select {
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-gap: 10px;
-margin-bottom: 15px;
-}
+.profile-avatar-select { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
 .avatar-option {
-width: 50px;
-height: 50px;
-border-radius: 50%;
-cursor: pointer;
-border: 3px solid transparent;
-transition: all 0.3s;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.5rem;
+  width: 50px; height: 50px; border-radius: 50%; cursor: pointer;
+  border: 3px solid transparent; transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
 }
-.avatar-option:hover {
-transform: scale(1.1);
-border-color: var(--primary);
-}
-.avatar-option.selected {
-border-color: var(--primary);
-box-shadow: 0 0 0 3px rgba(255,140,0,0.3);
-}
-.avatar-upload {
-margin-top: 10px;
-}
-.avatar-upload input {
-display: none;
-}
+.avatar-option:hover { transform: scale(1.1); border-color: var(--primary); }
+.avatar-option.selected { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,140,0,0.3); }
+.avatar-upload { margin-top: 10px; }
+.avatar-upload input { display: none; }
 .avatar-upload-label {
-display: inline-block;
-padding: 8px 16px;
-background: var(--light);
-border-radius: 20px;
-cursor: pointer;
-font-size: 0.9rem;
-color: var(--secondary);
-transition: all 0.3s;
+  display: inline-block; padding: 8px 16px; background: var(--light);
+  border-radius: 20px; cursor: pointer; font-size: 0.9rem; color: var(--secondary); transition: all 0.3s;
 }
-.avatar-upload-label:hover {
-background: #fff5e6;
-color: var(--primary);
-}
-.profile-info p {
-padding: 12px 0;
-border-bottom: 1px solid var(--light);
-}
-.profile-info strong {
-color: var(--primary);
-}
-.name-input-group {
-margin-bottom: 20px;
-}
-.name-input-group label {
-display: block;
-margin-bottom: 8px;
-font-weight: 700;
-color: var(--secondary);
-}
+.avatar-upload-label:hover { background: #fff5e6; color: var(--primary); }
+.profile-info p { padding: 12px 0; border-bottom: 1px solid var(--light); }
+.profile-info strong { color: var(--primary); }
+.name-input-group { margin-bottom: 20px; }
+.name-input-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--secondary); }
 .name-input-group input {
-width: 100%;
-padding: 12px;
-border: 2px solid #ddd;
-border-radius: 10px;
-font-size: 1rem;
+  width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;
 }
-.name-input-group input:focus {
-outline: none;
-border-color: var(--primary);
-}
-/* Modal */
+.name-input-group input:focus { outline: none; border-color: var(--primary); }
+
 .modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(26, 58, 92, 0.8);
-z-index: 2000;
-justify-content: center;
-align-items: center;
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(26, 58, 92, 0.8); z-index: 2000; justify-content: center; align-items: center;
 }
-.modal.active {
-display: flex;
-}
+.modal.active { display: flex; }
 .modal-content {
-background: var(--white);
-padding: 30px;
-border-radius: 15px;
-max-width: 650px;
-width: 90%;
-max-height: 85vh;
-overflow-y: auto;
-border-top: 5px solid var(--primary);
+  background: var(--white); padding: 30px; border-radius: 15px;
+  max-width: 700px; width: 90%; max-height: 85vh; overflow-y: auto;
+  border-top: 5px solid var(--primary);
 }
 .modal-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-padding-bottom: 15px;
-border-bottom: 2px solid var(--light);
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid var(--light);
 }
-.modal-header h3 {
-color: var(--secondary);
-font-size: 1.4rem;
-}
-.modal-close {
-background: none;
-border: none;
-font-size: 2rem;
-cursor: pointer;
-color: var(--secondary);
-}
-.modal-close:hover {
-color: var(--primary);
-}
-.workout-type-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-gap: 10px;
-margin-bottom: 20px;
-}
+.modal-header h3 { color: var(--secondary); font-size: 1.4rem; }
+.modal-close { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--secondary); }
+.modal-close:hover { color: var(--primary); }
+
+.workout-type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
 .workout-type-btn {
-padding: 12px;
-border: 2px solid #ddd;
-border-radius: 10px;
-background: var(--light);
-cursor: pointer;
-transition: all 0.3s;
-text-align: center;
+  padding: 12px; border: 2px solid #ddd; border-radius: 10px;
+  background: var(--light); cursor: pointer; transition: all 0.3s; text-align: center;
 }
-.workout-type-btn:hover {
-border-color: var(--primary);
-background: #fff5e6;
-}
-.workout-type-btn.selected {
-border-color: var(--primary);
-background: var(--gradient);
-color: var(--white);
-}
-.selected-list {
-margin-bottom: 20px;
-padding: 15px;
-background: var(--light);
-border-radius: 10px;
-}
-.selected-list h4 {
-color: var(--secondary);
-margin-bottom: 10px;
-font-size: 1rem;
-}
+.workout-type-btn:hover { border-color: var(--primary); background: #fff5e6; }
+.workout-type-btn.selected { border-color: var(--primary); background: var(--gradient); color: var(--white); }
+.selected-list { margin-bottom: 20px; padding: 15px; background: var(--light); border-radius: 10px; }
+.selected-list h4 { color: var(--secondary); margin-bottom: 10px; font-size: 1rem; }
 .selected-tag {
-display: inline-block;
-background: var(--primary);
-color: var(--white);
-padding: 5px 10px;
-border-radius: 12px;
-margin: 3px;
-font-size: 0.85rem;
+  display: inline-block; background: var(--primary); color: var(--white);
+  padding: 5px 10px; border-radius: 12px; margin: 3px; font-size: 0.85rem;
 }
-/* Notification */
+
 .notification {
-position: fixed;
-bottom: 20px;
-right: 20px;
-background: var(--secondary);
-color: var(--white);
-padding: 15px 25px;
-border-radius: 10px;
-box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-transform: translateY(100px);
-opacity: 0;
-transition: all 0.4s;
-z-index: 3000;
-font-weight: 600;
-border-left: 5px solid var(--primary);
+  position: fixed; bottom: 20px; right: 20px; background: var(--secondary);
+  color: var(--white); padding: 15px 25px; border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3); transform: translateY(100px);
+  opacity: 0; transition: all 0.4s; z-index: 3000; font-weight: 600;
+  border-left: 5px solid var(--primary);
 }
-.notification.show {
-transform: translateY(0);
-opacity: 1;
-}
-.notification.success {
-background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-}
-.notification.warning {
-background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
-}
-/* Footer & Legal */
+.notification.show { transform: translateY(0); opacity: 1; }
+.notification.success { background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); }
+.notification.warning { background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%); }
+
 .footer {
-background: var(--secondary);
-color: var(--white);
-padding: 20px;
-text-align: center;
-margin-top: auto;
-font-size: 0.9rem;
+  background: var(--secondary); color: var(--white); padding: 20px;
+  text-align: center; margin-top: auto; font-size: 0.9rem;
 }
-.footer-links {
-margin-bottom: 10px;
-}
-.footer-links a {
-color: var(--white);
-text-decoration: none;
-margin: 0 10px;
-font-weight: 600;
-}
-.footer-links a:hover {
-text-decoration: underline;
-color: var(--primary);
-}
-/* Cookie Banner */
-.cookie-banner {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-background: var(--white);
-padding: 20px;
-box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-z-index: 4000;
-display: none;
-flex-direction: column;
-align-items: center;
-gap: 15px;
-border-top: 4px solid var(--primary);
-}
-.cookie-banner p {
-max-width: 800px;
-text-align: center;
-color: var(--secondary);
-font-size: 0.9rem;
-line-height: 1.5;
-}
-.cookie-buttons {
-display: flex;
-gap: 10px;
-}
-.cookie-btn {
-padding: 10px 20px;
-border-radius: 20px;
-border: none;
-cursor: pointer;
-font-weight: 700;
-}
-.cookie-accept {
-background: var(--primary);
-color: var(--white);
-}
-.cookie-info {
-background: var(--light);
-color: var(--secondary);
-}
+.footer-links { margin-bottom: 10px; }
+.footer-links a { color: var(--white); text-decoration: none; margin: 0 10px; font-weight: 600; }
+.footer-links a:hover { text-decoration: underline; color: var(--primary); }
 
-/* 🔥 TIMER STYLES */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; width: 100%; background: var(--white);
+  padding: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); z-index: 4000;
+  display: none; flex-direction: column; align-items: center; gap: 15px;
+  border-top: 4px solid var(--primary);
+}
+.cookie-banner p { max-width: 800px; text-align: center; color: var(--secondary); font-size: 0.9rem; line-height: 1.5; }
+.cookie-buttons { display: flex; gap: 10px; }
+.cookie-btn { padding: 10px 20px; border-radius: 20px; border: none; cursor: pointer; font-weight: 700; }
+.cookie-accept { background: var(--primary); color: var(--white); }
+.cookie-info { background: var(--light); color: var(--secondary); }
+
+/* 🔥 TIMER: OBEN & NICHT SCHLIESSBAR */
 .timer-overlay {
-position: fixed;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%);
-background: var(--secondary);
-color: var(--white);
-padding: 20px 30px;
-border-radius: 20px;
-box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-z-index: 5000;
-display: none;
-flex-direction: column;
-align-items: center;
-gap: 15px;
-border: 3px solid var(--primary);
-min-width: 320px;
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: var(--secondary); color: var(--white);
+  padding: 10px 20px; border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4); z-index: 6000;
+  display: none; flex-direction: column; align-items: center; gap: 10px;
+  border-bottom: 3px solid var(--primary);
 }
-.timer-overlay.active {
-display: flex;
-animation: slideUp 0.3s ease;
-}
-@keyframes slideUp {
-from { transform: translateX(-50%) translateY(100px); opacity: 0; }
-to { transform: translateX(-50%) translateY(0); opacity: 1; }
-}
+.timer-overlay.active { display: flex; animation: slideDown 0.3s ease; }
+@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .timer-display {
-font-size: 3rem;
-font-weight: 800;
-font-family: 'Courier New', monospace;
-color: var(--primary);
-text-shadow: 0 0 20px rgba(255,140,0,0.5);
+  font-size: 2.2rem; font-weight: 800; font-family: 'Courier New', monospace;
+  color: var(--primary); text-shadow: 0 0 20px rgba(255,140,0,0.5);
 }
-.timer-display.urgent {
-color: #ff4444;
-animation: pulse 0.5s infinite;
-}
-@keyframes pulse {
-0%, 100% { transform: scale(1); }
-50% { transform: scale(1.1); }
-}
-.timer-controls {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-justify-content: center;
-}
+.timer-display.urgent { color: #ff4444; animation: pulse 0.5s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.timer-controls { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
 .timer-btn {
-padding: 10px 20px;
-border: none;
-border-radius: 10px;
-cursor: pointer;
-font-weight: 700;
-transition: all 0.2s;
-font-size: 0.9rem;
+  padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;
+  font-weight: 700; transition: all 0.2s; font-size: 0.8rem;
 }
-.timer-btn-preset {
-background: var(--light);
-color: var(--secondary);
-}
-.timer-btn-preset:hover {
-background: var(--primary);
-color: var(--white);
-}
-.timer-btn-action {
-background: var(--primary);
-color: var(--white);
-}
-.timer-btn-action:hover {
-background: var(--primary-dark);
-transform: scale(1.05);
-}
+.timer-btn-preset { background: var(--light); color: var(--secondary); }
+.timer-btn-preset:hover { background: var(--primary); color: var(--white); }
+.timer-btn-action { background: var(--primary); color: var(--white); }
+.timer-btn-action:hover { background: var(--primary-dark); transform: scale(1.05); }
 .timer-btn-adjust {
-background: var(--secondary-light);
-color: var(--white);
-width: 50px;
-height: 50px;
-font-size: 1.5rem;
-display: flex;
-align-items: center;
-justify-content: center;
+  background: var(--secondary-light); color: var(--white);
+  width: 40px; height: 40px; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
 }
-.timer-btn-adjust:hover {
-background: var(--primary);
-}
-.timer-close {
-position: absolute;
-top: 10px;
-right: 15px;
-background: none;
-border: none;
-color: var(--white);
-font-size: 1.5rem;
-cursor: pointer;
-opacity: 0.7;
-}
-.timer-close:hover {
-opacity: 1;
-color: var(--primary);
+.timer-btn-adjust:hover { background: var(--primary); }
+.timer-close { display: none; }
+
+.tutorial-content { line-height: 1.7; color: #333; font-size: 1.05rem; }
+.tutorial-content h4 { color: var(--secondary); margin: 15px 0 8px; }
+.tutorial-content ul { padding-left: 20px; margin: 10px 0; }
+.tutorial-content li { margin: 5px 0; }
+.tutorial-tip {
+  background: #fff5e6; border-left: 4px solid var(--primary);
+  padding: 12px; border-radius: 0 8px 8px 0; margin: 10px 0;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-.navbar {
-flex-direction: column;
-gap: 15px;
-}
-.nav-left, .nav-right {
-width: 100%;
-justify-content: center;
-flex-wrap: wrap;
-}
-.calendar-grid {
-gap: 3px;
-}
-.calendar-day-header {
-font-size: 0.75rem;
-padding: 8px 4px;
-}
-.calendar-day {
-min-height: 60px;
-padding: 3px;
-}
-.day-number {
-font-size: 1rem;
-}
-.day-workout {
-font-size: 0.6rem;
-padding: 2px 4px;
-}
-.exercise-inputs {
-grid-template-columns: 1fr;
-}
-.profile-avatar-select {
-grid-template-columns: repeat(5, 1fr);
-}
-.avatar-option {
-width: 40px;
-height: 40px;
-font-size: 1.2rem;
-}
-.cookie-banner {
-padding: 15px;
-}
-.cookie-buttons {
-flex-direction: column;
-width: 100%;
-}
-.cookie-btn {
-width: 100%;
-}
-.timer-overlay {
-min-width: 280px;
-padding: 15px 20px;
-}
-.timer-display {
-font-size: 2.5rem;
-}
-.timer-btn {
-padding: 8px 15px;
-font-size: 0.85rem;
-}
+  .navbar { flex-direction: column; gap: 15px; }
+  .nav-left, .nav-right { width: 100%; justify-content: center; flex-wrap: wrap; }
+  .calendar-grid { gap: 3px; }
+  .calendar-day-header { font-size: 0.75rem; padding: 8px 4px; }
+  .calendar-day { min-height: 60px; padding: 3px; }
+  .day-number { font-size: 1rem; }
+  .day-workout { font-size: 0.6rem; padding: 2px 4px; }
+  .exercise-inputs { grid-template-columns: 1fr; }
+  .profile-avatar-select { grid-template-columns: repeat(5, 1fr); }
+  .avatar-option { width: 40px; height: 40px; font-size: 1.2rem; }
+  .cookie-banner { padding: 15px; }
+  .cookie-buttons { flex-direction: column; width: 100%; }
+  .cookie-btn { width: 100%; }
+  .timer-display { font-size: 1.8rem; }
+  .timer-btn { padding: 8px 12px; font-size: 0.8rem; }
 }
 </style>
 </head>
 <body>
-<!-- Navigation - Dunkelblau mit klickbarem Logo -->
 <nav class="navbar">
-<div class="nav-left">
-<div class="app-title" onclick="goToHome()">🔥 WORKOUT-APP</div>
-</div>
-<div class="nav-right">
-<button class="nav-btn" onclick="showSection('calendar')">📅 Kalender</button>
-<button class="nav-btn" onclick="showSection('progress')">📊 Fortschritt</button>
-<button class="nav-btn" onclick="showSection('profile')">👤 Profil</button>
-</div>
+  <div class="nav-left"><div class="app-title" onclick="goToHome()">🔥 WORKOUT-APP</div></div>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="showSection('calendar')">📅 Kalender</button>
+    <button class="nav-btn" onclick="showSection('progress')">📊 Fortschritt</button>
+    <button class="nav-btn" onclick="showSection('profile')">👤 Profil</button>
+  </div>
 </nav>
-
 <div class="container">
-<!-- Setup -->
-<section id="setup" class="section">
-<div class="setup-card">
-<h2>🎯 Dein Trainingsplan</h2>
-<p>Wähle die Muskelgruppen, die du trainieren möchtest. Du kannst mehrere pro Tag kombinieren!</p>
-<div class="form-group">
-<label>Muskelgruppen:</label>
-<div class="checkbox-group">
-<label class="checkbox-item">
-<input type="checkbox" value="legs"> 🦵 Beine
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="chest"> 🔥 Brust
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="arms"> 💪 Arme
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="shoulders"> 🏋️ Schultern
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="sixpack"> 🎯 Sixpack
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="back"> 🦍 Rücken
-</label>
-<label class="checkbox-item">
-<input type="checkbox" value="cardio"> 🏃 Cardio
-</label>
+  <section id="setup" class="section">
+    <div class="setup-card">
+      <h2>🎯 Dein Trainingsplan</h2>
+      <p>Wähle die Muskelgruppen, die du trainieren möchtest. Du kannst mehrere pro Tag kombinieren!</p>
+      <div class="form-group">
+        <label>Muskelgruppen:</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" value="legs"> 🦵 Beine</label>
+          <label class="checkbox-item"><input type="checkbox" value="chest"> 🔥 Brust</label>
+          <label class="checkbox-item"><input type="checkbox" value="arms"> 💪 Arme</label>
+          <label class="checkbox-item"><input type="checkbox" value="shoulders"> 🏋️ Schultern</label>
+          <label class="checkbox-item"><input type="checkbox" value="sixpack"> 🎯 Sixpack</label>
+          <label class="checkbox-item"><input type="checkbox" value="back"> 🦍 Rücken</label>
+          <label class="checkbox-item"><input type="checkbox" value="cardio"> 🏃 Cardio</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Trainingsart:</label>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="equipment" value="dumbbell" checked> 🏋️ Hanteln</label>
+          <label class="radio-item"><input type="radio" name="equipment" value="bodyweight"> 💪 Körpergewicht</label>
+          <label class="radio-item"><input type="radio" name="equipment" value="mixed"> 🔄 Beides</label>
+        </div>
+      </div>
+      <button class="btn" onclick="saveSetup()">✅ Speichern</button>
+    </div>
+  </section>
+  <section id="calendar" class="section active">
+    <div class="schedule-panel">
+      <h3>📋 Wochentage zuweisen</h3>
+      <p>Klicke auf einen Tag und wähle eine oder mehrere Muskelgruppen. Das wiederholt sich jede Woche!</p>
+      <div class="schedule-grid" id="scheduleGrid"></div>
+    </div>
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <div class="calendar-nav">
+          <button class="nav-btn btn-secondary" onclick="changeMonth(-1)">◀</button>
+          <button class="nav-btn btn-secondary" onclick="goToToday()">Heute</button>
+          <button class="nav-btn btn-secondary" onclick="changeMonth(1)">▶</button>
+        </div>
+        <h2 id="currentMonth" style="color: var(--secondary);"></h2>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+    <div id="workoutDisplay" class="workout-card" style="display: none;">
+      <div class="workout-header">
+        <div><h2 class="workout-title" id="workoutTitle">Workout</h2><p class="workout-subtitle" id="workoutSubtitle"></p></div>
+        <button class="nav-btn btn-success" onclick="startWorkout()">🚀 Start</button>
+      </div>
+      <div id="workoutContent"></div>
+    </div>
+  </section>
+  <section id="progress" class="section">
+    <h2 style="color: var(--secondary); margin-bottom: 20px;">📊 Dein Fortschritt</h2>
+    <div class="progress-grid" id="progressGrid"></div>
+  </section>
+  <section id="profile" class="section">
+    <div class="profile-card">
+      <h2>👤 Dein Profil</h2>
+      <div class="profile-avatar-section">
+        <div class="profile-avatar-preview" id="avatarPreview">👤</div>
+        <div class="profile-avatar-select" id="avatarSelect"></div>
+        <div class="avatar-upload">
+          <label class="avatar-upload-label">📁 Eigenes Bild hochladen<input type="file" id="avatarUpload" accept="image/*"></label>
+        </div>
+      </div>
+      <div class="name-input-group">
+        <label for="userName">Dein Name:</label>
+        <input type="text" id="userName" placeholder="Name eingeben (optional)" maxlength="30">
+      </div>
+      <div class="profile-info" id="profileInfo">
+        <p><strong>Benutzer:</strong> <span id="profileName">Gast</span></p>
+        <p><strong>Trainingsart:</strong> <span id="profileEquipment">-</span></p>
+        <p><strong>Muskelgruppen:</strong> <span id="profileMuscles">-</span></p>
+        <p><strong>Wochenplan:</strong> <span id="profileSchedule">-</span></p>
+      </div>
+      <button class="btn" onclick="saveProfile()">💾 Profil speichern</button>
+      <button class="btn btn-secondary" style="margin-top:10px;" onclick="resetSetup()">🔄 Setup zurücksetzen</button>
+      <button class="btn" style="margin-top:10px;background:linear-gradient(135deg,#ff6b6b,#ee5a5a);" onclick="clearAllData()">⚠️ Alle Daten löschen</button>
+    </div>
+  </section>
 </div>
-</div>
-<div class="form-group">
-<label>Trainingsart:</label>
-<div class="radio-group">
-<label class="radio-item">
-<input type="radio" name="equipment" value="dumbbell" checked> 🏋️ Hanteln
-</label>
-<label class="radio-item">
-<input type="radio" name="equipment" value="bodyweight"> 💪 Körpergewicht
-</label>
-<label class="radio-item">
-<input type="radio" name="equipment" value="mixed"> 🔄 Beides
-</label>
-</div>
-</div>
-<button class="btn" onclick="saveSetup()">✅ Speichern</button>
-</div>
-</section>
-
-<!-- Calendar -->
-<section id="calendar" class="section active">
-<div class="schedule-panel">
-<h3>📋 Wochentage zuweisen</h3>
-<p>Klicke auf einen Tag und wähle eine oder mehrere Muskelgruppen. Das wiederholt sich jede Woche!</p>
-<div class="schedule-grid" id="scheduleGrid"></div>
-</div>
-<div class="calendar-container">
-<div class="calendar-header">
-<div class="calendar-nav">
-<button class="nav-btn btn-secondary" onclick="changeMonth(-1)">◀</button>
-<button class="nav-btn btn-secondary" onclick="goToToday()">Heute</button>
-<button class="nav-btn btn-secondary" onclick="changeMonth(1)">▶</button>
-</div>
-<h2 id="currentMonth" style="color: var(--secondary);"></h2>
-</div>
-<div class="calendar-grid" id="calendarGrid"></div>
-</div>
-<div id="workoutDisplay" class="workout-card" style="display: none;">
-<div class="workout-header">
-<div>
-<h2 class="workout-title" id="workoutTitle">Workout</h2>
-<p class="workout-subtitle" id="workoutSubtitle"></p>
-</div>
-<button class="nav-btn btn-success" onclick="startWorkout()">🚀 Start</button>
-</div>
-<div id="workoutContent"></div>
-</div>
-</section>
-
-<!-- Progress -->
-<section id="progress" class="section">
-<h2 style="color: var(--secondary); margin-bottom: 20px;">📊 Dein Fortschritt</h2>
-<div class="progress-grid" id="progressGrid"></div>
-</section>
-
-<!-- Profile mit Avatar & Name -->
-<section id="profile" class="section">
-<div class="profile-card">
-<h2>👤 Dein Profil</h2>
-<div class="profile-avatar-section">
-<div class="profile-avatar-preview" id="avatarPreview">👤</div>
-<div class="profile-avatar-select" id="avatarSelect"></div>
-<div class="avatar-upload">
-<label class="avatar-upload-label">
-📁 Eigenes Bild hochladen
-<input type="file" id="avatarUpload" accept="image/*">
-</label>
-</div>
-</div>
-<div class="name-input-group">
-<label for="userName">Dein Name:</label>
-<input type="text" id="userName" placeholder="Name eingeben (optional)" maxlength="30">
-</div>
-<div class="profile-info" id="profileInfo">
-<p><strong>Benutzer:</strong> <span id="profileName">Gast</span></p>
-<p><strong>Trainingsart:</strong> <span id="profileEquipment">-</span></p>
-<p><strong>Muskelgruppen:</strong> <span id="profileMuscles">-</span></p>
-<p><strong>Wochenplan:</strong> <span id="profileSchedule">-</span></p>
-</div>
-<button class="btn" onclick="saveProfile()">💾 Profil speichern</button>
-<button class="btn btn-secondary" style="margin-top: 10px;" onclick="resetSetup()">🔄 Setup zurücksetzen</button>
-<button class="btn" style="margin-top: 10px; background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);" onclick="clearAllData()">⚠️ Alle Daten löschen</button>
-</div>
-</section>
-</div>
-
-<!-- Footer mit Legal Links -->
 <footer class="footer">
-<div class="footer-links">
-<a href="#" onclick="openLegalModal('impressum')">Impressum</a>
-<a href="#" onclick="openLegalModal('datenschutz')">Datenschutz</a>
-</div>
-<div>&copy; <span id="year"></span> WORKOUT-APP. Alle Rechte vorbehalten.</div>
+  <div class="footer-links">
+    <a href="#" onclick="openLegalModal('impressum')">Impressum</a>
+    <a href="#" onclick="openLegalModal('datenschutz')">Datenschutz</a>
+  </div>
+  <div>&copy; <span id="year"></span> WORKOUT-APP. Alle Rechte vorbehalten.</div>
 </footer>
 
 <!-- Workout Modal -->
 <div class="modal" id="workoutModal">
-<div class="modal-content">
-<div class="modal-header">
-<h3 id="modalTitle">Workout</h3>
-<button class="modal-close" onclick="closeModal()">×</button>
-</div>
-<div id="modalExercises"></div>
-<button class="btn btn-success" style="margin-top: 20px;" onclick="completeWorkout()">✅ Abschließen</button>
-</div>
+  <div class="modal-content">
+    <div class="modal-header"><h3 id="modalTitle">Workout</h3><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div id="modalExercises"></div>
+    <button class="btn btn-success" style="margin-top:20px;" onclick="completeWorkout()">✅ Abschließen</button>
+  </div>
 </div>
 
 <!-- Type Selector Modal -->
 <div class="modal" id="typeModal">
-<div class="modal-content">
-<div class="modal-header">
-<h3>Training für <span id="selectedDayName"></span></h3>
-<button class="modal-close" onclick="closeTypeModal()">×</button>
+  <div class="modal-content">
+    <div class="modal-header"><h3>Training für <span id="selectedDayName"></span></h3><button class="modal-close" onclick="closeTypeModal()">×</button></div>
+    <p style="margin-bottom:15px;color:#666;">Wähle eine oder mehrere Muskelgruppen:</p>
+    <div class="selected-list" id="selectedList"></div>
+    <div class="workout-type-grid" id="typeGrid"></div>
+    <button class="btn" onclick="confirmWorkoutType()">✅ Übernehmen</button>
+    <button class="btn btn-secondary" style="margin-top:10px;" onclick="clearDay()">🗑️ Leeren</button>
+  </div>
 </div>
-<p style="margin-bottom: 15px; color: #666;">Wähle eine oder mehrere Muskelgruppen:</p>
-<div class="selected-list" id="selectedList"></div>
-<div class="workout-type-grid" id="typeGrid"></div>
-<button class="btn" onclick="confirmWorkoutType()">✅ Übernehmen</button>
-<button class="btn btn-secondary" style="margin-top: 10px;" onclick="clearDay()">🗑️ Leeren</button>
-</div>
+
+<!-- Tutorial Modal -->
+<div class="modal" id="tutorialModal">
+  <div class="modal-content">
+    <div class="modal-header"><h3 id="tutorialTitle">Übung</h3><button class="modal-close" onclick="closeTutorialModal()">×</button></div>
+    <div id="tutorialContent" class="tutorial-content"></div>
+    <button class="btn" style="margin-top:20px;" onclick="closeTutorialModal()">Verstanden ✓</button>
+  </div>
 </div>
 
 <!-- Legal Modals -->
 <div class="modal" id="legalModal">
-<div class="modal-content">
-<div class="modal-header">
-<h3 id="legalModalTitle">Rechtliches</h3>
-<button class="modal-close" onclick="closeLegalModal()">×</button>
-</div>
-<div id="legalModalContent" style="line-height: 1.6; color: #333;"></div>
-</div>
+  <div class="modal-content">
+    <div class="modal-header"><h3 id="legalModalTitle">Rechtliches</h3><button class="modal-close" onclick="closeLegalModal()">×</button></div>
+    <div id="legalModalContent" style="line-height:1.6;color:#333;"></div>
+  </div>
 </div>
 
 <!-- Cookie Banner -->
 <div class="cookie-banner" id="cookieBanner">
-<p>Diese Website verwendet lokale Speicherung (LocalStorage), um deine Trainingsdaten sicher auf deinem Gerät zu speichern. Es werden keine Daten an externe Server übertragen und kein Tracking durchgeführt.</p>
-<div class="cookie-buttons">
-<button class="cookie-btn cookie-info" onclick="showLegalModal('datenschutz')">Mehr Infos</button>
-<button class="cookie-btn cookie-accept" onclick="acceptCookies()">✅ Verstanden</button>
-</div>
+  <p>Diese Website verwendet lokale Speicherung (LocalStorage), um deine Trainingsdaten sicher auf deinem Gerät zu speichern. Es werden keine Daten an externe Server übertragen und kein Tracking durchgeführt.</p>
+  <div class="cookie-buttons">
+    <button class="cookie-btn cookie-info" onclick="showLegalModal('datenschutz')">Mehr Infos</button>
+    <button class="cookie-btn cookie-accept" onclick="acceptCookies()">✅ Verstanden</button>
+  </div>
 </div>
 
-<!-- 🔥 TIMER OVERLAY -->
+<!-- 🔥 TIMER OVERLAY (OBEN, NICHT SCHLIESSBAR) -->
 <div class="timer-overlay" id="timerOverlay">
-<button class="timer-close" onclick="closeTimer()">×</button>
-<div class="timer-display" id="timerDisplay">60</div>
-<div class="timer-controls">
-<button class="timer-btn timer-btn-preset" onclick="setTimer(10)">10s</button>
-<button class="timer-btn timer-btn-preset" onclick="setTimer(30)">30s</button>
-<button class="timer-btn timer-btn-preset" onclick="setTimer(60)">60s</button>
-<button class="timer-btn timer-btn-preset" onclick="setTimer(120)">2min</button>
-<button class="timer-btn timer-btn-preset" onclick="setTimer(240)">4min</button>
-<button class="timer-btn timer-btn-preset" onclick="setTimer(300)">5min</button>
-</div>
-<div class="timer-controls">
-<button class="timer-btn timer-btn-adjust" onclick="adjustTimer(-10)">-10</button>
-<button class="timer-btn timer-btn-action" id="timerStartStop" onclick="toggleTimer()">▶ Start</button>
-<button class="timer-btn timer-btn-adjust" onclick="adjustTimer(10)">+10</button>
-</div>
-<div class="timer-controls">
-<button class="timer-btn timer-btn-action" style="background: #ff4444;" onclick="resetTimer()">🔄 Reset</button>
-</div>
+  <div class="timer-display" id="timerDisplay">1:00</div>
+  <div class="timer-controls">
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(10)">10s</button>
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(30)">30s</button>
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(60)">60s</button>
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(120)">2min</button>
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(240)">4min</button>
+    <button class="timer-btn timer-btn-preset" onclick="setTimer(300)">5min</button>
+  </div>
+  <div class="timer-controls">
+    <button class="timer-btn timer-btn-adjust" onclick="adjustTimer(-10)">-10</button>
+    <button class="timer-btn timer-btn-action" id="timerStartStop" onclick="toggleTimer()">▶ Start</button>
+    <button class="timer-btn timer-btn-adjust" onclick="adjustTimer(10)">+10</button>
+  </div>
+  <div class="timer-controls">
+    <button class="timer-btn timer-btn-action" style="background:#ff4444;" onclick="resetTimer()">🔄 Reset</button>
+  </div>
 </div>
 
 <!-- Notification -->
 <div class="notification" id="notification"></div>
 
-<!-- 🔥 AUDIO ELEMENT FOR TIMER -->
+<!-- Audio für Timer -->
 <audio id="timerAudio" preload="auto">
-<source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2teleB4eQJq3xYd3Hh5Aor7YiXoeHkCcutKJfR4eQJm40I1+Hh5AmLbOjoEeHkCWtMqQhB4eQJSxx5GJHh5AkrDFko4eHkCOsMOUkR4eQIqvw5aSHh5Aia3CmpYeHkCIrMGYmB4eQIaqwZmaHh5AhqnAmZseHkCGp8GZnB4eQIWmwJmeHh5AhqXAmZ+eHh5AhqTAmaCeHh5AhqPAmaGeHh5AhqLAmaKeHh5AhqHBmaOeHh5AhqDBmaSeHh5AhqDBmaWeHh5AhqDBmaaHh5AhqDBmamHh5AhqLBma2Hh5AhqLNmbWHh5AhqLOmfG" type="audio/wav">
+  <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2teleB4eQJq3xYd3Hh5Aor7YiXoeHkCcutKJfR4eQJm40I1+Hh5AmLbOjoEeHkCWtMqQhB4eQJSxx5GJHh5AkrDFko4eHkCOsMOUkR4eQIqvw5aSHh5Aia3CmpYeHkCIrMGYmB4eQIaqwZmaHh5AhqnAmZseHkCGp8GZnB4eQIWmwJmeHh5AhqXAmZ+eHh5AhqTAmaCeHh5AhqPAmaGeHh5AhqLAmaKeHh5AhqHBmaOeHh5AhqDBmaSeHh5AhqDBmaWeHh5AhqDBmaaHh5AhqDBmamHh5AhqLBma2Hh5AhqLNmbWHh5AhqLOmfG" type="audio/wav">
 </audio>
 
 <script>
-// ==================== DATEN ====================
+// ==================== DATENBANK MIT 15 ÜBUNGEN PRO MUSKELGRUPPE ====================
 const exerciseDB = {
-legs: {
-dumbbell: [
-{ name: "Goblet Squat", sets: 4, reps: "10-12" },
-{ name: "Dumbbell Squat", sets: 4, reps: "8-10" },
-{ name: "Romanian Deadlift", sets: 4, reps: "10-12" },
-{ name: "Lunges", sets: 3, reps: "12 pro Bein" },
-{ name: "Calf Raises", sets: 4, reps: "15-20" }
-],
-bodyweight: [
-{ name: "Air Squats", sets: 4, reps: "20-25" },
-{ name: "Ausfallschritte", sets: 3, reps: "15 pro Bein" },
-{ name: "Jump Squats", sets: 3, reps: "15" },
-{ name: "Glute Bridge", sets: 3, reps: "20" },
-{ name: "Wandsitz", sets: 3, reps: "45-60 Sek" }
-],
-mixed: [
-{ name: "Goblet Squat", sets: 4, reps: "10-12" },
-{ name: "Air Squats", sets: 3, reps: "20" },
-{ name: "Lunges", sets: 3, reps: "12 pro Bein" },
-{ name: "Jump Squats", sets: 3, reps: "15" }
-]
-},
-chest: {
-dumbbell: [
-{ name: "Dumbbell Bench Press", sets: 4, reps: "8-10" },
-{ name: "Incline Press", sets: 4, reps: "10-12" },
-{ name: "Dumbbell Fly", sets: 3, reps: "12-15" },
-{ name: "Pullover", sets: 3, reps: "12" }
-],
-bodyweight: [
-{ name: "Push-ups", sets: 4, reps: "15-20" },
-{ name: "Wide Push-ups", sets: 3, reps: "12-15" },
-{ name: "Diamond Push-ups", sets: 3, reps: "10-12" },
-{ name: "Decline Push-ups", sets: 3, reps: "12-15" }
-],
-mixed: [
-{ name: "Dumbbell Bench Press", sets: 4, reps: "8-10" },
-{ name: "Push-ups", sets: 3, reps: "15-20" },
-{ name: "Incline Press", sets: 3, reps: "10-12" }
-]
-},
-arms: {
-dumbbell: [
-{ name: "Biceps Curl", sets: 4, reps: "10-12" },
-{ name: "Hammer Curl", sets: 4, reps: "10-12" },
-{ name: "Triceps Extension", sets: 4, reps: "10-12" },
-{ name: "Kickbacks", sets: 3, reps: "12-15" }
-],
-bodyweight: [
-{ name: "Diamond Push-ups", sets: 4, reps: "12-15" },
-{ name: "Dips", sets: 4, reps: "10-15" },
-{ name: "Chin-ups", sets: 3, reps: "Max" }
-],
-mixed: [
-{ name: "Biceps Curl", sets: 4, reps: "10-12" },
-{ name: "Dips", sets: 4, reps: "10-15" },
-{ name: "Triceps Extension", sets: 3, reps: "10-12" }
-]
-},
-shoulders: {
-dumbbell: [
-{ name: "Shoulder Press", sets: 4, reps: "8-10" },
-{ name: "Lateral Raises", sets: 4, reps: "12-15" },
-{ name: "Front Raises", sets: 3, reps: "12-15" },
-{ name: "Reverse Fly", sets: 3, reps: "12-15" }
-],
-bodyweight: [
-{ name: "Pike Push-ups", sets: 4, reps: "10-12" },
-{ name: "Wall Angels", sets: 3, reps: "15" },
-{ name: "Plank to Downward Dog", sets: 3, reps: "15" }
-],
-mixed: [
-{ name: "Shoulder Press", sets: 4, reps: "8-10" },
-{ name: "Lateral Raises", sets: 4, reps: "12-15" },
-{ name: "Pike Push-ups", sets: 3, reps: "10-12" }
-]
-},
-sixpack: {
-dumbbell: [
-{ name: "Russian Twists", sets: 4, reps: "20" },
-{ name: "Dumbbell Sit-ups", sets: 4, reps: "15-20" },
-{ name: "Side Bends", sets: 3, reps: "15 pro Seite" }
-],
-bodyweight: [
-{ name: "Crunches", sets: 4, reps: "20-25" },
-{ name: "Leg Raises", sets: 4, reps: "15-20" },
-{ name: "Plank", sets: 4, reps: "45-60 Sek" },
-{ name: "Mountain Climbers", sets: 3, reps: "30 Sek" }
-],
-mixed: [
-{ name: "Russian Twists", sets: 4, reps: "20" },
-{ name: "Crunches", sets: 3, reps: "20-25" },
-{ name: "Plank", sets: 4, reps: "45-60 Sek" }
-]
-},
-back: {
-dumbbell: [
-{ name: "Dumbbell Row", sets: 4, reps: "10-12" },
-{ name: "Deadlift", sets: 4, reps: "8-10" },
-{ name: "Single-Arm Row", sets: 3, reps: "12 pro Arm" },
-{ name: "Reverse Fly", sets: 3, reps: "15" }
-],
-bodyweight: [
-{ name: "Pull-ups", sets: 4, reps: "Max" },
-{ name: "Chin-ups", sets: 4, reps: "Max" },
-{ name: "Superman", sets: 3, reps: "15-20" }
-],
-mixed: [
-{ name: "Dumbbell Row", sets: 4, reps: "10-12" },
-{ name: "Pull-ups", sets: 3, reps: "Max" },
-{ name: "Superman", sets: 3, reps: "15-20" }
-]
-},
-cardio: {
-dumbbell: [
-{ name: "Thrusters", sets: 4, reps: "15" },
-{ name: "Dumbbell Burpees", sets: 3, reps: "10" }
-],
-bodyweight: [
-{ name: "Jumping Jacks", sets: 4, reps: "30 Sek" },
-{ name: "Burpees", sets: 4, reps: "10-15" },
-{ name: "Mountain Climbers", sets: 4, reps: "30 Sek" },
-{ name: "High Knees", sets: 3, reps: "30 Sek" }
-],
-mixed: [
-{ name: "Jumping Jacks", sets: 3, reps: "30 Sek" },
-{ name: "Thrusters", sets: 3, reps: "15" },
-{ name: "Burpees", sets: 3, reps: "10-15" }
-]
-}
+  legs: {
+    dumbbell: [
+      {name:"Goblet Squat",sets:4,reps:"10-12",tutorial:"Halte eine Hantel vor die Brust. Gehe tief in die Hocke, Rücken gerade, dann hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Oberschenkelvorderseite (Quadrizeps)</li><li>Gesäßmuskulatur</li><li>Rumpfstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Halte die Ellenbogen nah am Körper und drücke die Fersen fest in den Boden.</div>"},
+      {name:"Dumbbell Squat",sets:4,reps:"8-10",tutorial:"Hanteln seitlich an den Schultern halten. Knie beugen bis Oberschenkel parallel zum Boden.<h4>Was wird trainiert?</h4><ul><li>Quadrizeps</li><li>Gesäß</li><li>Waden</li></ul><div class='tutorial-tip'>💡 Tipp: Brust raus, Blick geradeaus, nicht mit den Knien nach innen fallen.</div>"},
+      {name:"Romanian Deadlift",sets:4,reps:"10-12",tutorial:"Hanteln vor den Oberschenkeln. Hüfte nach hinten schieben, Rücken gerade, Hanteln an den Beinen entlangführen.<h4>Was wird trainiert?</h4><ul><li>Hamstrings (Oberschenkelrückseite)</li><li>Unterer Rücken</li><li>Gesäß</li></ul><div class='tutorial-tip'>💡 Tipp: Spüre die Dehnung in den Hamstrings, nicht im unteren Rücken!</div>"},
+      {name:"Lunges",sets:3,reps:"12 pro Bein",tutorial:"Mit Hanteln einen großen Schritt nach vorne. Hinteres Knie fast zum Boden senken.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Gesäß</li><li>Balance & Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Das vordere Knie sollte nicht über die Zehen hinausragen.</div>"},
+      {name:"Calf Raises",sets:4,reps:"15-20",tutorial:"Auf Zehenspitzen stellen mit Hanteln in den Händen. Langsam absenken.<h4>Was wird trainiert?</h4><ul><li>Wadenmuskulatur</li></ul><div class='tutorial-tip'>💡 Tipp: Halte dich ggf. fest und führe die Bewegung langsam aus.</div>"},
+      {name:"Sumo Squat",sets:4,reps:"12",tutorial:"Breiter Stand, Zehen nach außen. Hantel zwischen den Beinen halten. Tief gehen.<h4>Was wird trainiert?</h4><ul><li>Innenseite Oberschenkel</li><li>Gesäß</li><li>Adduktoren</li></ul><div class='tutorial-tip'>💡 Tipp: Drücke die Knie aktiv nach außen während der Bewegung.</div>"},
+      {name:"Step-Ups",sets:3,reps:"10 pro Bein",tutorial:"Auf eine Bank steigen mit Hanteln. Einbeinig hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Gesäß</li><li>Einbeinige Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Nutze nur das Bein auf der Bank zum Hochdrücken, nicht abstoßen.</div>"},
+      {name:"Bulgarian Split Squat",sets:3,reps:"10 pro Bein",tutorial:"Ein Fuß hinten auf Bank. Mit vorderem Bein beugen.<h4>Was wird trainiert?</h4><ul><li>Quadrizeps</li><li>Gesäß (einbeinig)</li><li>Balance</li></ul><div class='tutorial-tip'>💡 Tipp: Oberkörper leicht nach vorne neigen für mehr Gesäßaktivierung.</div>"},
+      {name:"Glute Ham Raise",sets:3,reps:"10",tutorial:"Bauchlage, Fersen fixieren. Oberkörper anheben.<h4>Was wird trainiert?</h4><ul><li>Hamstrings</li><li>Unterer Rücken</li><li>Gesäß</li></ul><div class='tutorial-tip'>💡 Tipp: Kann auch ohne Gerät als 'Nordic Curl' Variation ausgeführt werden.</div>"},
+      {name:"Box Jump",sets:3,reps:"10",tutorial:"Mit leichten Hanteln auf eine Box springen. Weich landen.<h4>Was wird trainiert?</h4><ul><li>Explosivkraft</li><li>Beine</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Lande leise und stabil – Qualität vor Quantität!</div>"},
+      {name:"Sissy Squat",sets:3,reps:"12",tutorial:"Fersen fixieren, Knie nach vorne, Oberkörper nach hinten lehnen.<h4>Was wird trainiert?</h4><ul><li>Quadrizeps (isoliert)</li><li>Kniestabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Halte dich anfangs fest und steigere dich langsam.</div>"},
+      {name:"Hack Squat (DB)",sets:4,reps:"10",tutorial:"Hanteln hinter den Beinen halten. Tief in die Hocke.<h4>Was wird trainiert?</h4><ul><li>Quadrizeps</li><li>Gesäß</li></ul><div class='tutorial-tip'>💡 Tipp: Halte den Rücken gerade und die Fersen am Boden.</div>"},
+      {name:"Curtsy Lunges",sets:3,reps:"12 pro Seite",tutorial:"Ein Bein diagonal hinter das andere setzen. Beugen.<h4>Was wird trainiert?</h4><ul><li>Gesäß (seitlich)</li><li>Oberschenkel</li><li>Hüftstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Halte die Hüften gerade und nicht zur Seite kippen.</div>"},
+      {name:"Single Leg Deadlift",sets:3,reps:"10 pro Bein",tutorial:"Einbeinig stehen, Hantel zum Boden führen, anderes Bein nach hinten.<h4>Was wird trainiert?</h4><ul><li>Balance</li><li>Hamstrings</li><li>Rumpfstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Blick auf einen festen Punkt richten für bessere Balance.</div>"},
+      {name:"Wall Sit (Weighted)",sets:3,reps:"45 Sek",tutorial:"An die Wand lehnen, Hantel auf den Schoß. Halten.<h4>Was wird trainiert?</h4><ul><li>Ausdauer Quadrizeps</li><li>Mentale Stärke</li></ul><div class='tutorial-tip'>💡 Tipp: Atme ruhig weiter und spanne den Core aktiv an.</div>"}
+    ],
+    bodyweight: [
+      {name:"Air Squats",sets:4,reps:"20-25",tutorial:"Ohne Gewicht in die Hocke gehen. Rücken gerade.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Gesäß</li><li>Grundkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekte für Aufwärmen oder als Finisher!</div>"},
+      {name:"Ausfallschritte",sets:3,reps:"15 pro Bein",tutorial:"Großer Schritt nach vorne, Knie beugen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Balance</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Wechsle zwischen vorwärts und rückwärts für Abwechslung.</div>"},
+      {name:"Jump Squats",sets:3,reps:"15",tutorial:"Aus der Hocke explosiv nach oben springen.<h4>Was wird trainiert?</h4><ul><li>Explosivkraft</li><li>Beine</li><li>Cardio-Effekt</li></ul><div class='tutorial-tip'>💡 Tipp: Lande weich in der Hocke und gehe direkt in die nächste Wiederholung.</div>"},
+      {name:"Glute Bridge",sets:3,reps:"20",tutorial:"Rückenlage, Füße aufstellen, Hüfte anheben.<h4>Was wird trainiert?</h4><ul><li>Gesäß</li><li>Hamstrings</li><li>Rumpfstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Spanne das Gesäß oben aktiv an für 1 Sekunde.</div>"},
+      {name:"Wandsitz",sets:3,reps:"45-60 Sek",tutorial:"Rücken an Wand, Oberschenkel parallel zum Boden. Halten.<h4>Was wird trainiert?</h4><ul><li>Ausdauer Quadrizeps</li><li>Mentale Stärke</li></ul><div class='tutorial-tip'>💡 Tipp: Für mehr Intensität ein Bein anheben.</div>"},
+      {name:"Pistol Squat (Assisted)",sets:3,reps:"5 pro Bein",tutorial:"Einbeinig in die Hocke gehen (ggf. festhalten).<h4>Was wird trainiert?</h4><ul><li>Kraft</li><li>Balance</li><li>Beine (einbeinig)</li></ul><div class='tutorial-tip'>💡 Tipp: Nutze einen Türrahmen zur Unterstützung am Anfang.</div>"},
+      {name:"Skater Jumps",sets:3,reps:"20",tutorial:"Seitlich von einem Bein auf das andere springen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Seitliche Beweglichkeit</li></ul><div class='tutorial-tip'>💡 Tipp: Lande stabil und kontrolliert, nicht nur schnell.</div>"},
+      {name:"Reverse Lunges",sets:3,reps:"15 pro Bein",tutorial:"Schritt nach hinten machen, Knie beugen.<h4>Was wird trainiert?</h4><ul><li>Quadrizeps</li><li>Gesäß</li><li>Schonender für die Knie</li></ul><div class='tutorial-tip'>💡 Tipp: Reverse Lunges sind gelenkschonender als vorwärts.</div>"},
+      {name:"Side Lunges",sets:3,reps:"15 pro Seite",tutorial:"Schritt zur Seite, ein Bein beugen, anderes strecken.<h4>Was wird trainiert?</h4><ul><li>Innenseite Oberschenkel</li><li>Gesäß</li><li>Hüftmobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Halte das gestreckte Bein gerade und die Fußsohle am Boden.</div>"},
+      {name:"Donkey Kicks",sets:3,reps:"20 pro Bein",tutorial:"Vierfüßlerstand, Bein nach oben strecken.<h4>Was wird trainiert?</h4><ul><li>Gesäß</li><li>Hüftstrecker</li></ul><div class='tutorial-tip'>💡 Tipp: Bewege nur das Bein, der Rücken bleibt stabil.</div>"},
+      {name:"Fire Hydrants",sets:3,reps:"15 pro Seite",tutorial:"Vierfüßlerstand, Bein zur Seite heben.<h4>Was wird trainiert?</h4><ul><li>Gesäß (seitlich)</li><li>Hüftabduktoren</li></ul><div class='tutorial-tip'>💡 Tipp: Halte das Knie im 90°-Winkel während der Bewegung.</div>"},
+      {name:"Calf Raises (Bodyweight)",sets:4,reps:"25",tutorial:"Auf Zehenspitzen stellen ohne Gewicht.<h4>Was wird trainiert?</h4><ul><li>Waden</li><li>Knöchelstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Führe die Bewegung langsam aus für mehr Muskelspannung.</div>"},
+      {name:"Wall Sit",sets:3,reps:"60 Sek",tutorial:"Ohne Gewicht an die Wand lehnen.<h4>Was wird trainiert?</h4><ul><li>Ausdauer Beine</li><li>Mentale Stärke</li></ul><div class='tutorial-tip'>💡 Tipp: Atme tief und gleichmäßig während des Haltens.</div>"},
+      {name:"Single Leg Glute Bridge",sets:3,reps:"12 pro Bein",tutorial:"Glute Bridge mit einem Bein gestreckt.<h4>Was wird trainiert?</h4><ul><li>Gesäß einbeinig</li><li>Rumpfstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Halte die Hüften gerade, nicht zur Seite kippen.</div>"},
+      {name:"Bear Crawl",sets:3,reps:"30 Sek",tutorial:"Vierfüßlergang, Knie knapp über Boden.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Core</li><li>Schultern</li><li>Ganzkörper-Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Halte den Rücken flach wie ein Tisch.</div>"}
+    ],
+    mixed: [
+      {name:"Goblet Squat",sets:4,reps:"10-12",tutorial:"Hantel vor der Brust, tief in die Hocke.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Core</li></ul>"},
+      {name:"Air Squats",sets:3,reps:"20",tutorial:"Kniebeugen ohne Gewicht für Volumen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Ausdauer</li></ul>"},
+      {name:"Lunges",sets:3,reps:"12 pro Bein",tutorial:"Ausfallschritte mit oder ohne Hanteln.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Balance</li></ul>"},
+      {name:"Jump Squats",sets:3,reps:"15",tutorial:"Explosive Kniebeugen.<h4>Was wird trainiert?</h4><ul><li>Kraft</li><li>Explosivität</li></ul>"},
+      {name:"Step-Ups",sets:3,reps:"12 pro Bein",tutorial:"Auf Bank steigen, optional mit Hanteln.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Gesäß</li></ul>"},
+      {name:"Romanian Deadlift",sets:3,reps:"10",tutorial:"Hüfte nach hinten, Hanteln nutzen.<h4>Was wird trainiert?</h4><ul><li>Hamstrings</li><li>Rücken</li></ul>"},
+      {name:"Glute Bridge (Weighted)",sets:3,reps:"15",tutorial:"Hantel auf die Hüfte legen.<h4>Was wird trainiert?</h4><ul><li>Gesäß</li></ul>"},
+      {name:"Box Step-Over",sets:3,reps:"10",tutorial:"Seitlich über eine Box steigen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Koordination</li></ul>"},
+      {name:"Squat Hold",sets:3,reps:"30 Sek",tutorial:"Unten in der Hocke halten.<h4>Was wird trainiert?</h4><ul><li>Ausdauer</li><li>Isometrische Kraft</li></ul>"},
+      {name:"Lateral Band Walk",sets:3,reps:"15 Schritte",tutorial:"Mit Widerstandsband zur Seite gehen.<h4>Was wird trainiert?</h4><ul><li>Hüftabduktoren</li><li>Gesäß</li></ul>"},
+      {name:"Single Leg Squat",sets:3,reps:"8 pro Bein",tutorial:"Einbeinig hocken (ggf. festhalten).<h4>Was wird trainiert?</h4><ul><li>Kraft</li><li>Balance</li></ul>"},
+      {name:"Deadlift to Row",sets:3,reps:"10",tutorial:"Kreuzheben gefolgt von Rudern.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Rücken</li></ul>"},
+      {name:"Thrusters",sets:3,reps:"12",tutorial:"Kniebeuge mit Schulterdruck.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Cardio</li></ul>"},
+      {name:"Overhead Squat",sets:3,reps:"8",tutorial:"Hantel über Kopf halten, hocken.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li><li>Beine</li><li>Schultern</li></ul>"},
+      {name:"Zercher Squat",sets:3,reps:"10",tutorial:"Hantel in der Armbeuge halten, hocken.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Core</li><li>Griffkraft</li></ul>"}
+    ]
+  },
+  chest: {
+    dumbbell: [
+      {name:"Dumbbell Bench Press",sets:4,reps:"8-10",tutorial:"Auf Bank liegen, Hanteln von der Brust hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Brustmuskulatur</li><li>Trizeps</li><li>Vordere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Schulterblätter zusammenziehen und am Boden halten.</div>"},
+      {name:"Incline Press",sets:4,reps:"10-12",tutorial:"Bank schräg stellen (30-45°), Hanteln hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Obere Brust</li><li>Vordere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Nicht zu steil einstellen, sonst übernehmen die Schultern.</div>"},
+      {name:"Dumbbell Fly",sets:3,reps:"12-15",tutorial:"Arme leicht gebeugt, weit öffnen und schließen.<h4>Was wird trainiert?</h4><ul><li>Brust (Dehnung & Kontraktion)</li><li>Brustmitte</li></ul><div class='tutorial-tip'>💡 Tipp: Stell dir vor, du umarmst einen großen Baum.</div>"},
+      {name:"Pullover",sets:3,reps:"12",tutorial:"Quer zur Bank liegen, Hantel hinter den Kopf führen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Latissimus</li><li>Serratus</li></ul><div class='tutorial-tip'>💡 Tipp: Halte die Ellenbogen leicht gebeugt während der Bewegung.</div>"},
+      {name:"Decline Press",sets:3,reps:"10",tutorial:"Bank negativ stellen, drücken.<h4>Was wird trainiert?</h4><ul><li>Untere Brust</li><li>Trizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Sicherstellen, dass die Füße fixiert sind.</div>"},
+      {name:"Floor Press",sets:3,reps:"10",tutorial:"Auf dem Boden liegen, drücken (Ellenbogen stoppen am Boden).<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Brust (begrenzter Bewegungsradius)</li></ul><div class='tutorial-tip'>💡 Tipp: Gut bei Schulterproblemen, da der Bewegungsradius begrenzt ist.</div>"},
+      {name:"Squeeze Press",sets:3,reps:"12",tutorial:"Zwei Hanteln zusammenpressen während des Drückens.<h4>Was wird trainiert?</h4><ul><li>Innere Brust</li><li>Brustmitte</li></ul><div class='tutorial-tip'>💡 Tipp: Konstanten Druck zwischen den Hanteln halten.</div>"},
+      {name:"Single Arm Press",sets:3,reps:"10 pro Arm",tutorial:"Einarmig drücken für Core-Stabilität.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Core (Anti-Rotation)</li><li>Schulterstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Spanne den Bauch aktiv an, um nicht zur Seite zu kippen.</div>"},
+      {name:"Hex Press",sets:3,reps:"12",tutorial:"Hanteln zusammenpressen und drücken.<h4>Was wird trainiert?</h4><ul><li>Brustmitte</li><li>Innere Brust</li></ul><div class='tutorial-tip'>💡 Tipp: Beginne mit leichtem Gewicht, die Technik ist anspruchsvoll.</div>"},
+      {name:"Around the World",sets:3,reps:"10",tutorial:"Hantel im Halbkreis um den Kopf führen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Schultern</li><li>Mobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert ausführen, nicht schwunghaft.</div>"},
+      {name:"Weighted Dips",sets:3,reps:"8",tutorial:"Dips mit Hantel zwischen Beinen.<h4>Was wird trainiert?</h4><ul><li>Untere Brust</li><li>Trizeps</li><li>Vordere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Oberkörper leicht nach vorne neigen für mehr Brustfokus.</div>"},
+      {name:"Crossover (DB)",sets:3,reps:"15",tutorial:"Stehend Hanteln von außen nach innen führen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Brustmitte</li></ul><div class='tutorial-tip'>💡 Tipp: Stell dir vor, du drückst etwas vor deiner Brust zusammen.</div>"},
+      {name:"Close Grip Press",sets:3,reps:"10",tutorial:"Hanteln eng zusammen halten beim Drücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Innere Brust</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen nah am Körper führen.</div>"},
+      {name:"Push-up (Weighted)",sets:3,reps:"10",tutorial:"Hantel auf den Rücken legen beim Liegestütz.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Trizeps</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Nur mit Hilfsperson oder sicherer Ablage möglich!</div>"},
+      {name:"Incline Fly",sets:3,reps:"12",tutorial:"Schräg liegen, Arme öffnen.<h4>Was wird trainiert?</h4><ul><li>Obere Brust</li><li>Brustdehnung</li></ul><div class='tutorial-tip'>💡 Tipp: Arme nur so weit öffnen, wie du kontrollieren kannst.</div>"}
+    ],
+    bodyweight: [
+      {name:"Push-ups",sets:4,reps:"15-20",tutorial:"Klassische Liegestütze. Körper gerade.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Trizeps</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Hände unter den Schultern, Ellenbogen ~45° zum Körper.</div>"},
+      {name:"Wide Push-ups",sets:3,reps:"12-15",tutorial:"Hände weiter als schulterbreit.<h4>Was wird trainiert?</h4><ul><li>Äußere Brust</li><li>Brustdehnung</li></ul><div class='tutorial-tip'>💡 Tipp: Nicht zu weit, sonst Belastung auf Schultern.</div>"},
+      {name:"Diamond Push-ups",sets:3,reps:"10-12",tutorial:"Hände zusammen unter der Brust.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Innere Brust</li></ul><div class='tutorial-tip'>💡 Tipp: Schwer! Ggf. auf Knien beginnen.</div>"},
+      {name:"Decline Push-ups",sets:3,reps:"12-15",tutorial:"Füße erhöht, Kopf tief.<h4>Was wird trainiert?</h4><ul><li>Obere Brust</li><li>Vordere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Je höher die Füße, desto schwerer.</div>"},
+      {name:"Incline Push-ups",sets:3,reps:"15",tutorial:"Hände erhöht, Kopf tief.<h4>Was wird trainiert?</h4><ul><li>Untere Brust</li><li>Einstieg</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt für Anfänger oder als Aufwärmen.</div>"},
+      {name:"Archer Push-ups",sets:3,reps:"8 pro Seite",tutorial:"Ein Arm strecken, anderer beugt.<h4>Was wird trainiert?</h4><ul><li>Einseitige Kraft</li><li>Brust</li><li>Core-Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Fortgeschritten! Erst normale Push-ups meistern.</div>"},
+      {name:"Plyo Push-ups",sets:3,reps:"10",tutorial:"Explosiv abdrücken, Hände lösen vom Boden.<h4>Was wird trainiert?</h4><ul><li>Explosivkraft</li><li>Brust</li><li>Schnellkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Weich landen und Kontrolle behalten.</div>"},
+      {name:"Spiderman Push-ups",sets:3,reps:"10",tutorial:"Knie zum Ellenbogen führen beim Absenken.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Schräge Bauchmuskeln</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert, nicht schwunghaft.</div>"},
+      {name:"Hindu Push-ups",sets:3,reps:"12",tutorial:"Von oben nach unten durchtauchen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Brust</li><li>Mobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Fließende Bewegung wie eine Welle.</div>"},
+      {name:"Pike Push-ups",sets:3,reps:"10",tutorial:"Hüfte hoch, Kopf zum Boden.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Obere Brust</li><li>Trizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Vorbereitung für Handstand Push-ups!</div>"},
+      {name:"Wall Push-ups",sets:3,reps:"20",tutorial:"Gegen die Wand drücken (leicht).<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Einstieg</li><li>Reha</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt für Anfänger oder nach Verletzungen.</div>"},
+      {name:"Knee Push-ups",sets:3,reps:"15",tutorial:"Auf den Knien drücken.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Einstieg</li></ul><div class='tutorial-tip'>💡 Tipp: Körper von Knien bis Kopf in einer Linie halten.</div>"},
+      {name:"Typewriter Push-ups",sets:3,reps:"8",tutorial:"Seitlich von einem Arm zum anderen bewegen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Einseitige Kraft</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Fortgeschritten – erst normale Push-ups beherrschen.</div>"},
+      {name:"Commando Push-ups",sets:3,reps:"10",tutorial:"Hände versetzt, Kopf zwischen Händen durchführen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Brust</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Halte die Hüften stabil, nicht hin- und herwackeln.</div>"},
+      {name:"Pseudo Planche Push-ups",sets:3,reps:"8",tutorial:"Hände nahe der Hüfte, Körper nach vorne lehnen.<h4>Was wird trainiert?</h4><ul><li>Vordere Schulter</li><li>Brust</li><li>Core-Spannung</li></ul><div class='tutorial-tip'>💡 Tipp: Sehr anspruchsvoll – langsam steigern!</div>"}
+    ],
+    mixed: [
+      {name:"Dumbbell Bench Press",sets:4,reps:"8-10",tutorial:"Hanteln drücken auf Bank.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Trizeps</li></ul>"},
+      {name:"Push-ups",sets:3,reps:"15-20",tutorial:"Liegestütze zum Abschluss.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Ausdauer</li></ul>"},
+      {name:"Incline Press",sets:3,reps:"10-12",tutorial:"Schrägbank drücken.<h4>Was wird trainiert?</h4><ul><li>Obere Brust</li></ul>"},
+      {name:"Flys",sets:3,reps:"12",tutorial:"Hanteln öffnen und schließen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Dehnung</li></ul>"},
+      {name:"Dips",sets:3,reps:"Max",tutorial:"An Barren oder Stühlen.<h4>Was wird trainiert?</h4><ul><li>Untere Brust</li><li>Trizeps</li></ul>"},
+      {name:"Weighted Push-ups",sets:3,reps:"10",tutorial:"Liegestütz mit Gewicht.<h4>Was wird trainiert?</h4><ul><li>Kraft</li><li>Brust</li></ul>"},
+      {name:"Cable Fly (Simulated)",sets:3,reps:"15",tutorial:"Mit Hanteln stehend Kreuzen.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Core</li></ul>"},
+      {name:"Floor Fly",sets:3,reps:"12",tutorial:"Auf Boden liegen, Hanteln öffnen.<h4>Was wird trainiert?</h4><ul><li>Brust</li></ul>"},
+      {name:"Incline Push-up (Feet)",sets:3,reps:"12",tutorial:"Füße auf Bank.<h4>Was wird trainiert?</h4><ul><li>Obere Brust</li></ul>"},
+      {name:"Squeeze Push-up",sets:3,reps:"10",tutorial:"Hände nah zusammen.<h4>Was wird trainiert?</h4><ul><li>Innere Brust</li></ul>"},
+      {name:"Band Push-ups",sets:3,reps:"15",tutorial:"Widerstandsband über den Rücken.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Progressive Resistance</li></ul>"},
+      {name:"DB Pullover",sets:3,reps:"12",tutorial:"Hantel hinter den Kopf.<h4>Was wird trainiert?</h4><ul><li>Brust</li><li>Lat</li></ul>"},
+      {name:"Close Grip DB Press",sets:3,reps:"10",tutorial:"Hanteln eng drücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Brust</li></ul>"},
+      {name:"Decline DB Press",sets:3,reps:"10",tutorial:"Kopf tief, drücken.<h4>Was wird trainiert?</h4><ul><li>Untere Brust</li></ul>"},
+      {name:"Isometric Hold",sets:3,reps:"30 Sek",tutorial:"Unten im Liegestütz halten.<h4>Was wird trainiert?</h4><ul><li>Ausdauer</li><li>Isometrische Kraft</li></ul>"}
+    ]
+  },
+  arms: {
+    dumbbell: [
+      {name:"Biceps Curl",sets:4,reps:"10-12",tutorial:"Hanteln von unten nach oben curlen. Ellenbogen fixieren.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Unterarm</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen am Körper halten, nicht nach vorne schwingen.</div>"},
+      {name:"Hammer Curl",sets:4,reps:"10-12",tutorial:"Handflächen zeigen zueinander. Curlen.<h4>Was wird trainiert?</h4><ul><li>Brachialis</li><li>Unterarm</li><li>Bizeps (seitlich)</li></ul><div class='tutorial-tip'>💡 Tipp: Macht den Arm optisch dicker von der Seite!</div>"},
+      {name:"Triceps Extension",sets:4,reps:"10-12",tutorial:"Hantel hinter den Kopf führen, strecken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Langer Trizepskopf</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen nah am Kopf halten, nicht nach außen.</div>"},
+      {name:"Kickbacks",sets:3,reps:"12-15",tutorial:"Oberkörper parallel zum Boden, Unterarm nach hinten strecken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Isolation</li></ul><div class='tutorial-tip'>💡 Tipp: Nur der Unterarm bewegt sich, Oberarm bleibt fix.</div>"},
+      {name:"Concentration Curl",sets:3,reps:"12 pro Arm",tutorial:"Ellenbogen am Oberschenkel abstützen, curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps Peak</li><li>Isolation</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt für den 'Bizeps-Gipfel'!</div>"},
+      {name:"Preacher Curl (DB)",sets:3,reps:"10",tutorial:"Oberarm auflegen, curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Verhindert Schwung</li></ul><div class='tutorial-tip'>💡 Tipp: Kann auch an einer Bankkante ausgeführt werden.</div>"},
+      {name:"Zottman Curl",sets:3,reps:"10",tutorial:"Hoch curlen (Handfläche oben), runter drehen (Handfläche unten).<h4>Was wird trainiert?</h4><ul><li>Bizeps & Unterarm</li><li>Ganzheitliche Armkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam absenken für maximale Muskelspannung.</div>"},
+      {name:"Overhead Curl",sets:3,reps:"12",tutorial:"Arme über Kopf, Hantel hinter den Kopf curlen.<h4>Was wird trainiert?</h4><ul><li>Langer Bizepskopf</li><li>Schultermobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Gut dehnen vor der Übung!</div>"},
+      {name:"Tricep Dips (DB)",sets:3,reps:"12",tutorial:"Auf Stuhl sitzen, Hantel auf Schoß, hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Sicherheit</li></ul><div class='tutorial-tip'>💡 Tipp: Alternative zu Bank Dips mit mehr Kontrolle.</div>"},
+      {name:"Wrist Curl",sets:3,reps:"15",tutorial:"Unterarm auflegen, Handgelenk beugen.<h4>Was wird trainiert?</h4><ul><li>Unterarm</li><li>Griffkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Kleine Bewegung, große Wirkung für den Unterarm.</div>"},
+      {name:"Reverse Curl",sets:3,reps:"12",tutorial:"Handflächen zeigen nach unten, curlen.<h4>Was wird trainiert?</h4><ul><li>Unterarm</li><li>Brachialis</li></ul><div class='tutorial-tip'>💡 Tipp: Nimm weniger Gewicht als beim normalen Curl.</div>"},
+      {name:"Spider Curl",sets:3,reps:"12",tutorial:"Brust auf Bank, Arme hängen lassen, curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Isolation ohne Schwung</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt um Cheating zu verhindern!</div>"},
+      {name:"Skullcrushers",sets:3,reps:"10",tutorial:"Liegen, Hanteln zur Stirn senken, strecken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Langer Kopf</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen stabil halten, nicht nach außen wandern lassen.</div>"},
+      {name:"Drag Curl",sets:3,reps:"12",tutorial:"Hanteln am Körper hochziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Konstante Spannung</li></ul><div class='tutorial-tip'>💡 Tipp: Die Hanteln 'schleifen' am Körper hoch.</div>"},
+      {name:"Cross Body Hammer",sets:3,reps:"12",tutorial:"Hantel zur gegenüberliegenden Schulter curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Brachialis</li></ul><div class='tutorial-tip'>💡 Tipp: Fühlt sich anders an – probier beide Varianten!</div>"}
+    ],
+    bodyweight: [
+      {name:"Diamond Push-ups",sets:4,reps:"12-15",tutorial:"Hände eng unter der Brust.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Innere Brust</li></ul>"},
+      {name:"Dips",sets:4,reps:"10-15",tutorial:"An Barren oder Stühlen absenken und hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Brust</li></ul>"},
+      {name:"Chin-ups",sets:3,reps:"Max",tutorial:"Handflächen zeigen zu dir, hochziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Rücken</li></ul>"},
+      {name:"Bodyweight Curl",sets:3,reps:"15",tutorial:"An Tischkante festhalten, Körper weglehnen, heranziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Core</li></ul>"},
+      {name:"Bench Dips",sets:3,reps:"15",tutorial:"Hände auf Bank, Füße auf Boden, absenken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Plank to Push-up",sets:3,reps:"10",tutorial:"Von Unterarm zu Handfläche hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Core</li><li>Schulterstabilität</li></ul>"},
+      {name:"Tricep Extension (Wall)",sets:3,reps:"15",tutorial:"Gegen Wand drücken, Ellenbogen beugen.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li><li>Einstieg</li></ul>"},
+      {name:"Isometric Hold",sets:3,reps:"30 Sek",tutorial:"Im Chin-up oben halten.<h4>Was wird trainiert?</h4><ul><li>Armkraft</li><li>Griffkraft</li><li>Mentale Stärke</li></ul>"},
+      {name:"Pike Push-up",sets:3,reps:"10",tutorial:"Hüfte hoch, drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Trizeps</li></ul>"},
+      {name:"Close Grip Push-up",sets:3,reps:"15",tutorial:"Hände nah zusammen.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Australian Pull-up",sets:3,reps:"12",tutorial:"Unter Tisch/Stange hangeln, hochziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Rücken</li></ul>"},
+      {name:"Doorway Curl",sets:3,reps:"15",tutorial:"Türrahmen festhalten, Körper weglehnen, heranziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Core</li></ul>"},
+      {name:"Floor Tricep Ext",sets:3,reps:"15",tutorial:"Auf Ellenbogen abstützen, hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Shadow Boxing",sets:3,reps:"60 Sek",tutorial:"Schnelle Schläge nach vorne.<h4>Was wird trainiert?</h4><ul><li>Ausdauer Arme</li><li>Cardio</li><li>Koordination</li></ul>"},
+      {name:"Arm Circles",sets:3,reps:"30 Sek",tutorial:"Arme kreisen lassen.<h4>Was wird trainiert?</h4><ul><li>Durchblutung</li><li>Schultern</li><li>Aufwärmen</li></ul>"}
+    ],
+    mixed: [
+      {name:"Biceps Curl",sets:4,reps:"10-12",tutorial:"Hantel curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"},
+      {name:"Dips",sets:4,reps:"10-15",tutorial:"Körpergewicht Dips.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Triceps Extension",sets:3,reps:"10-12",tutorial:"Hantel hinter Kopf.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Hammer Curl",sets:3,reps:"12",tutorial:"Hantel neutral halten.<h4>Was wird trainiert?</h4><ul><li>Unterarm</li></ul>"},
+      {name:"Chin-ups",sets:3,reps:"Max",tutorial:"Hochziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"},
+      {name:"Push-ups",sets:3,reps:"15",tutorial:"Liegestütze.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Concentration Curl",sets:3,reps:"10",tutorial:"Einarmig curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"},
+      {name:"Kickback",sets:3,reps:"12",tutorial:"Trizeps strecken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Wrist Curl",sets:3,reps:"15",tutorial:"Unterarm trainieren.<h4>Was wird trainiert?</h4><ul><li>Unterarm</li></ul>"},
+      {name:"Reverse Curl",sets:3,reps:"12",tutorial:"Handflächen unten.<h4>Was wird trainiert?</h4><ul><li>Unterarm</li></ul>"},
+      {name:"Overhead Ext",sets:3,reps:"12",tutorial:"Hantel über Kopf strecken.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Preacher Curl",sets:3,reps:"10",tutorial:"Auflegen und curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"},
+      {name:"Bench Dip",sets:3,reps:"15",tutorial:"Auf Bank abstützen.<h4>Was wird trainiert?</h4><ul><li>Trizeps</li></ul>"},
+      {name:"Incline Curl",sets:3,reps:"12",tutorial:"Schräg liegen, curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"},
+      {name:"Cable Curl (Sim)",sets:3,reps:"15",tutorial:"Mit Hantel stehend curlen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li></ul>"}
+    ]
+  },
+  shoulders: {
+    dumbbell: [
+      {name:"Shoulder Press",sets:4,reps:"8-10",tutorial:"Hanteln von Schulterhöhe über Kopf drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern (alle Köpfe)</li><li>Trizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Core anspannen, nicht ins Hohlkreuz fallen.</div>"},
+      {name:"Lateral Raises",sets:4,reps:"12-15",tutorial:"Arme seitlich anheben bis Schulterhöhe.<h4>Was wird trainiert?</h4><ul><li>Seitliche Schulter</li><li>Schulterbreite</li></ul><div class='tutorial-tip'>💡 Tipp: Leicht nach vorne kippen, kleine Bewegung reicht!</div>"},
+      {name:"Front Raises",sets:3,reps:"12-15",tutorial:"Arme gerade nach vorne anheben.<h4>Was wird trainiert?</h4><ul><li>Vordere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Abwechselnd oder beide Arme, Handflächen nach unten.</div>"},
+      {name:"Reverse Fly",sets:3,reps:"12-15",tutorial:"Vorgebeugt, Arme seitlich heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li><li>Oberer Rücken</li></ul><div class='tutorial-tip'>💡 Tipp: Leichtes Gewicht, Fokus auf die hintere Schulter!</div>"},
+      {name:"Arnold Press",sets:3,reps:"10",tutorial:"Handflächen zu dir, drücken und drehen.<h4>Was wird trainiert?</h4><ul><li>Gesamte Schulter</li><li>Rotation</li></ul><div class='tutorial-tip'>💡 Tipp: Benannt nach Arnold Schwarzenegger – fließende Bewegung!</div>"},
+      {name:"Upright Row",sets:3,reps:"12",tutorial:"Hanteln am Körper hochziehen bis Kinn.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Trapezmuskel</li></ul><div class='tutorial-tip'>💡 Tipp: Nicht zu hoch ziehen, um die Schultern zu schonen.</div>"},
+      {name:"Shrugs",sets:3,reps:"15",tutorial:"Schultern zu den Ohren ziehen.<h4>Was wird trainiert?</h4><ul><li>Trapezmuskel</li><li>Nacken</li></ul><div class='tutorial-tip'>💡 Tipp: Oben kurz halten, dann kontrolliert absenken.</div>"},
+      {name:"Face Pulls (DB)",sets:3,reps:"15",tutorial:"Hantel zum Gesicht ziehen, Ellenbogen hoch.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li><li>Rücken</li><li>Haltung</li></ul><div class='tutorial-tip'>💡 Tipp: Stell dir vor, du ziehst ein Seil zum Gesicht.</div>"},
+      {name:"One Arm Press",sets:3,reps:"10 pro Arm",tutorial:"Einarmig über Kopf drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Core (Anti-Rotation)</li></ul><div class='tutorial-tip'>💡 Tipp: Spanne den Bauch an, um nicht zur Seite zu kippen.</div>"},
+      {name:"Cuban Press",sets:3,reps:"12",tutorial:"Ellenbogen hoch, Unterarm drehen, drücken.<h4>Was wird trainiert?</h4><ul><li>Rotatorenmanschette</li><li>Schultergesundheit</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt als Aufwärmen oder Reha-Übung!</div>"},
+      {name:"High Pull",sets:3,reps:"12",tutorial:"Hantel explosiv hochziehen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Trapez</li><li>Explosivkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Aus den Beinen starten, nicht nur mit den Armen.</div>"},
+      {name:"Plate Raise",sets:3,reps:"15",tutorial:"Hantelscheibe vor sich anheben.<h4>Was wird trainiert?</h4><ul><li>Vordere Schulter</li><li>Griffkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Arme gestreckt halten, nicht schwunghaft.</div>"},
+      {name:"Bent Over Raise",sets:3,reps:"15",tutorial:"Vorgebeugt seitlich heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Rücken gerade, nur die Arme bewegen.</div>"},
+      {name:"Seated Press",sets:3,reps:"10",tutorial:"Sitzen und drücken (kein Schwung).<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Isolation</li></ul><div class='tutorial-tip'>💡 Tipp: Entfernt den Schwung aus den Beinen – purer Schulterfokus!</div>"},
+      {name:"Around the World",sets:3,reps:"10",tutorial:"Hantel um den Kopf kreisen.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li><li>Schulterstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert, nicht schwunghaft.</div>"}
+    ],
+    bodyweight: [
+      {name:"Pike Push-ups",sets:4,reps:"10-12",tutorial:"Hüfte hoch, Kopf zum Boden drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Trizeps</li></ul>"},
+      {name:"Wall Angels",sets:3,reps:"15",tutorial:"Rücken an Wand, Arme auf und ab führen.<h4>Was wird trainiert?</h4><ul><li>Haltung</li><li>Schultermobilität</li></ul>"},
+      {name:"Plank to Downward Dog",sets:3,reps:"15",tutorial:"Von Plank in Downward Dog schieben.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Core</li><li>Mobilität</li></ul>"},
+      {name:"Handstand Hold",sets:3,reps:"30 Sek",tutorial:"Gegen Wand kopfüber halten.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Balance</li><li>Core</li></ul>"},
+      {name:"Bear Crawl",sets:3,reps:"30 Sek",tutorial:"Vierfüßlergang.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Stabilität</li><li>Ganzkörper</li></ul>"},
+      {name:"Inchworm",sets:3,reps:"10",tutorial:"Hände vorwärts laufen, Körper nachziehen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Core</li><li>Hamstrings</li></ul>"},
+      {name:"Arm Circles",sets:3,reps:"30 Sek",tutorial:"Große Kreise mit Armen.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li><li>Durchblutung</li><li>Aufwärmen</li></ul>"},
+      {name:"Superman Hold",sets:3,reps:"30 Sek",tutorial:"Bauchlage, Arme und Beine heben.<h4>Was wird trainiert?</h4><ul><li>Rücken</li><li>Schulter</li><li>Hintere Schulter</li></ul>"},
+      {name:"Prone Y Raise",sets:3,reps:"15",tutorial:"Bauchlage, Arme in Y-Form heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li><li>Oberer Rücken</li></ul>"},
+      {name:"Prone T Raise",sets:3,reps:"15",tutorial:"Bauchlage, Arme in T-Form heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li><li>Rückenmitte</li></ul>"},
+      {name:"Prone W Raise",sets:3,reps:"15",tutorial:"Bauchlage, Arme in W-Form heben.<h4>Was wird trainiert?</h4><ul><li>Rotatoren</li><li>Schultergesundheit</li></ul>"},
+      {name:"Wall Walk",sets:3,reps:"5",tutorial:"An der Wand hochlaufen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Kraft</li><li>Progression zu Handstand</li></ul>"},
+      {name:"Pseudo Planche Lean",sets:3,reps:"15",tutorial:"Liegestützposition, nach vorne lehnen.<h4>Was wird trainiert?</h4><ul><li>Vordere Schulter</li><li>Core-Spannung</li></ul>"},
+      {name:"Scapular Push-up",sets:3,reps:"15",tutorial:"Nur Schulterblätter bewegen im Liegestütz.<h4>Was wird trainiert?</h4><ul><li>Stabilität</li><li>Schultergesundheit</li></ul>"},
+      {name:"Doorway Stretch",sets:3,reps:"30 Sek",tutorial:"Türrahmen festhalten, dehnen.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li><li>Brustdehnung</li><li>Schulteröffnung</li></ul>"}
+    ],
+    mixed: [
+      {name:"Shoulder Press",sets:4,reps:"8-10",tutorial:"Hanteln drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern</li></ul>"},
+      {name:"Lateral Raises",sets:4,reps:"12-15",tutorial:"Seitlich heben.<h4>Was wird trainiert?</h4><ul><li>Seite Schulter</li></ul>"},
+      {name:"Pike Push-ups",sets:3,reps:"10-12",tutorial:"Körpergewicht drücken.<h4>Was wird trainiert?</h4><ul><li>Schultern</li></ul>"},
+      {name:"Front Raise",sets:3,reps:"12",tutorial:"Nach vorne heben.<h4>Was wird trainiert?</h4><ul><li>Vorne Schulter</li></ul>"},
+      {name:"Reverse Fly",sets:3,reps:"12",tutorial:"Vorgebeugt heben.<h4>Was wird trainiert?</h4><ul><li>Hinten Schulter</li></ul>"},
+      {name:"Shrugs",sets:3,reps:"15",tutorial:"Schultern zucken.<h4>Was wird trainiert?</h4><ul><li>Trapez</li></ul>"},
+      {name:"Arnold Press",sets:3,reps:"10",tutorial:"Drehen und drücken.<h4>Was wird trainiert?</h4><ul><li>Schulter</li></ul>"},
+      {name:"Handstand Push-up",sets:3,reps:"5",tutorial:"Kopfüber drücken.<h4>Was wird trainiert?</h4><ul><li>Schulter Kraft</li></ul>"},
+      {name:"Upright Row",sets:3,reps:"12",tutorial:"Hochziehen.<h4>Was wird trainiert?</h4><ul><li>Schulter</li></ul>"},
+      {name:"Face Pull",sets:3,reps:"15",tutorial:"Zum Gesicht ziehen.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li></ul>"},
+      {name:"Wall Handstand",sets:3,reps:"30 Sek",tutorial:"Halten.<h4>Was wird trainiert?</h4><ul><li>Ausdauer</li><li>Balance</li></ul>"},
+      {name:"Seated Press",sets:3,reps:"10",tutorial:"Sitzen und drücken.<h4>Was wird trainiert?</h4><ul><li>Schulter</li></ul>"},
+      {name:"Bear Crawl",sets:3,reps:"30 Sek",tutorial:"Kriechen.<h4>Was wird trainiert?</h4><ul><li>Stabilität</li></ul>"},
+      {name:"Inchworm",sets:3,reps:"10",tutorial:"Laufen.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li></ul>"},
+      {name:"Y Raise",sets:3,reps:"15",tutorial:"Y-Form heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li></ul>"}
+    ]
+  },
+  sixpack: {
+    dumbbell: [
+      {name:"Russian Twists",sets:4,reps:"20",tutorial:"Sitzen, Oberkörper drehen, Hantel bewegen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Rotation</li><li>Core-Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Füße können angehoben werden für mehr Intensität.</div>"},
+      {name:"Dumbbell Sit-ups",sets:4,reps:"15-20",tutorial:"Hantel vor der Brust, aufrichten.<h4>Was wird trainiert?</h4><ul><li>Gerader Bauch</li><li>Hüftbeuger</li></ul><div class='tutorial-tip'>💡 Tipp: Aus der Hüfte aufrichten, nicht nur mit dem Nacken ziehen.</div>"},
+      {name:"Side Bends",sets:3,reps:"15 pro Seite",tutorial:"Stehend mit Hantel zur Seite neigen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Seitliche Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Nur zur Seite neigen, nicht nach vorne oder hinten.</div>"},
+      {name:"Weighted Crunch",sets:3,reps:"20",tutorial:"Hantel hinter den Kopf, crunchen.<h4>Was wird trainiert?</h4><ul><li>Oberer Bauch</li></ul><div class='tutorial-tip'>💡 Tipp: Nur die Schultern vom Boden heben, nicht den ganzen Oberkörper.</div>"},
+      {name:"Leg Raises (Weighted)",sets:3,reps:"15",tutorial:"Hantel zwischen Füßen, Beine heben.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li><li>Hüftbeuger</li></ul><div class='tutorial-tip'>💡 Tipp: Unteren Rücken in den Boden drücken für maximale Bauchaktivierung.</div>"},
+      {name:"Woodchoppers",sets:3,reps:"15 pro Seite",tutorial:"Hantel diagonal von oben nach unten führen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Rotation</li><li>Functional Core</li></ul><div class='tutorial-tip'>💡 Tipp: Aus der Hüfte drehen, nicht nur mit den Armen.</div>"},
+      {name:"V-Ups (Weighted)",sets:3,reps:"12",tutorial:"Hantel in Händen, Ober- und Unterkörper anheben.<h4>Was wird trainiert?</h4><ul><li>Gesamter Bauch</li><li>Core-Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert – Qualität vor Quantität!</div>"},
+      {name:"Dead Bug (Weighted)",sets:3,reps:"12",tutorial:"Rückenlage, Hantel über Brust, Gliedmaßen bewegen.<h4>Was wird trainiert?</h4><ul><li>Core Stabilität</li><li>Koordination</li><li>Rückenschonend</li></ul><div class='tutorial-tip'>💡 Tipp: Unteren Rücken immer in den Boden drücken.</div>"},
+      {name:"Pallof Press (Sim)",sets:3,reps:"12",tutorial:"Hantel vor der Brust halten, gegen Rotation arbeiten.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Anti-Rotation</li><li>Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Stell dir vor, jemand will dich zur Seite ziehen – widerstehen!</div>"},
+      {name:"Suitcase Carry",sets:3,reps:"30 Sek",tutorial:"Hantel einseitig tragen, gerade gehen.<h4>Was wird trainiert?</h4><ul><li>Core Stabilität</li><li>Seitliche Bauchmuskeln</li><li>Haltung</li></ul><div class='tutorial-tip'>💡 Tipp: Nicht zur Seite kippen – bleib gerade wie ein Soldat!</div>"},
+      {name:"Overhead Hold",sets:3,reps:"30 Sek",tutorial:"Hantel über Kopf halten, stehen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Schultern</li><li>Ganzkörper-Spannung</li></ul><div class='tutorial-tip'>💡 Tipp: Bauch und Gesäß fest anspannen für Stabilität.</div>"},
+      {name:"Torso Rotation",sets:3,reps:"20",tutorial:"Hantel vor der Brust, Oberkörper drehen.<h4>Was wird trainiert?</h4><ul><li>Rotation</li><li>Schräge Bauchmuskeln</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nur der Oberkörper dreht.</div>"},
+      {name:"Decline Sit-up",sets:3,reps:"15",tutorial:"Schräg liegen, aufrichten mit Hantel.<h4>Was wird trainiert?</h4><ul><li>Bauch</li><li>Hüftbeuger</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam absenken für mehr Muskelspannung.</div>"},
+      {name:"Reverse Crunch (DB)",sets:3,reps:"15",tutorial:"Beine heben, Hantel zwischen Füßen.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften vom Boden abheben für maximale Aktivierung.</div>"},
+      {name:"Ab Rollout (DB)",sets:3,reps:"10",tutorial:"Auf Knien, Hantel nach vorne rollen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Ganzkörper-Spannung</li></ul><div class='tutorial-tip'>💡 Tipp: Nur so weit wie du kontrolliert zurückrollen kannst!</div>"}
+    ],
+    bodyweight: [
+      {name:"Crunches",sets:4,reps:"20-25",tutorial:"Oberkörper anheben, unterer Rücken bleibt liegen.<h4>Was wird trainiert?</h4><ul><li>Oberer Bauch</li></ul><div class='tutorial-tip'>💡 Tipp: Hände hinter den Kopf, nicht am Nacken ziehen!</div>"},
+      {name:"Leg Raises",sets:4,reps:"15-20",tutorial:"Rückenlage, Beine gestreckt heben.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li></ul><div class='tutorial-tip'>💡 Tipp: Unteren Rücken in den Boden drücken.</div>"},
+      {name:"Plank",sets:4,reps:"45-60 Sek",tutorial:"Auf Unterarmen stützen, Körper gerade.<h4>Was wird trainiert?</h4><ul><li>Gesamter Core</li><li>Rumpfstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Bauch, Gesäß und Beine fest anspannen.</div>"},
+      {name:"Mountain Climbers",sets:3,reps:"30 Sek",tutorial:"Laufbewegung im Plank.<h4>Was wird trainiert?</h4><ul><li>Bauch</li><li>Cardio</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nicht auf und ab wippen.</div>"},
+      {name:"Bicycle Crunch",sets:3,reps:"20 pro Seite",tutorial:"Ellenbogen zum gegenüberliegenden Knie.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Rotation</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert drehen, nicht hetzen.</div>"},
+      {name:"Flutter Kicks",sets:3,reps:"30 Sek",tutorial:"Beine leicht heben und schlagen.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li><li>Ausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Kleine, schnelle Bewegungen, Rücken am Boden.</div>"},
+      {name:"Reverse Crunch",sets:3,reps:"15",tutorial:"Knie zur Brust ziehen, Hüfte anheben.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li></ul><div class='tutorial-tip'>💡 Tipp: Kontrolliert absenken, nicht fallen lassen.</div>"},
+      {name:"Side Plank",sets:3,reps:"30 Sek pro Seite",tutorial:"Seitlich auf Unterarm stützen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Seitliche Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Hüfte nicht absinken lassen – gerade Linie!</div>"},
+      {name:"V-Ups",sets:3,reps:"12",tutorial:"Gleichzeitig Arme und Beine heben.<h4>Was wird trainiert?</h4><ul><li>Gesamter Bauch</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Atme aus beim Hochkommen für mehr Kraft.</div>"},
+      {name:"Heel Touch",sets:3,reps:"20",tutorial:"Liegen, Fersen abwechselnd berühren.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li></ul><div class='tutorial-tip'>💡 Tipp: Nur die Schultern leicht anheben, nicht den ganzen Oberkörper.</div>"},
+      {name:"Dead Bug",sets:3,reps:"12",tutorial:"Rückenlage, gegenüberliegende Gliedmaßen bewegen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Koordination</li><li>Rückenschonend</li></ul><div class='tutorial-tip'>💡 Tipp: Unteren Rücken immer in Kontakt mit dem Boden halten.</div>"},
+      {name:"Hollow Body Hold",sets:3,reps:"30 Sek",tutorial:"Rückenlage, Körper wie eine Banane spannen.<h4>Was wird trainiert?</h4><ul><li>Core Spannung</li><li>Ganzkörper-Kontrolle</li></ul><div class='tutorial-tip'>💡 Tipp: Starte mit angewinkelten Beinen, steigere dich.</div>"},
+      {name:"Spiderman Plank",sets:3,reps:"12 pro Seite",tutorial:"Knie zum Ellenbogen im Plank.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nicht hin- und herwackeln.</div>"},
+      {name:"Sit-through",sets:3,reps:"10 pro Seite",tutorial:"Vierfüßler, Bein unter dem Körper durchführen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Mobilität</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Fließende Bewegung, nicht abgehackt.</div>"},
+      {name:"Bear Plank",sets:3,reps:"30 Sek",tutorial:"Vierfüßler, Knie schweben lassen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Schulterstabilität</li><li>Ganzkörper-Spannung</li></ul><div class='tutorial-tip'>💡 Tipp: Rücken flach halten wie ein Tisch.</div>"}
+    ],
+    mixed: [
+      {name:"Russian Twists",sets:4,reps:"20",tutorial:"Mit Hantel drehen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li></ul>"},
+      {name:"Crunches",sets:3,reps:"20-25",tutorial:"Klassisch aufrichten.<h4>Was wird trainiert?</h4><ul><li>Bauch</li></ul>"},
+      {name:"Plank",sets:4,reps:"45-60 Sek",tutorial:"Halten.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"Leg Raises",sets:3,reps:"15",tutorial:"Beine heben.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li></ul>"},
+      {name:"Mountain Climbers",sets:3,reps:"30 Sek",tutorial:"Laufen im Plank.<h4>Was wird trainiert?</h4><ul><li>Bauch</li></ul>"},
+      {name:"Side Bends",sets:3,reps:"15",tutorial:"Mit Hantel neigen.<h4>Was wird trainiert?</h4><ul><li>Seite</li></ul>"},
+      {name:"Sit-ups",sets:3,reps:"15",tutorial:"Komplett aufrichten.<h4>Was wird trainiert?</h4><ul><li>Bauch</li></ul>"},
+      {name:"Bicycle",sets:3,reps:"20",tutorial:"Radfahren im Liegen.<h4>Was wird trainiert?</h4><ul><li>Schräge Bauchmuskeln</li></ul>"},
+      {name:"Flutter Kicks",sets:3,reps:"30 Sek",tutorial:"Beine schlagen.<h4>Was wird trainiert?</h4><ul><li>Unterer Bauch</li></ul>"},
+      {name:"Side Plank",sets:3,reps:"30 Sek",tutorial:"Seitlich halten.<h4>Was wird trainiert?</h4><ul><li>Seite</li></ul>"},
+      {name:"V-Ups",sets:3,reps:"12",tutorial:"V-Form bilden.<h4>Was wird trainiert?</h4><ul><li>Bauch</li></ul>"},
+      {name:"Woodchopper",sets:3,reps:"15",tutorial:"Diagonal bewegen.<h4>Was wird trainiert?</h4><ul><li>Rotation</li></ul>"},
+      {name:"Dead Bug",sets:3,reps:"12",tutorial:"Kreuzweise bewegen.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"Hollow Hold",sets:3,reps:"30 Sek",tutorial:"Spannung halten.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"Suitcase Carry",sets:3,reps:"30 Sek",tutorial:"Einseitig tragen.<h4>Was wird trainiert?</h4><ul><li>Stabilität</li></ul>"}
+    ]
+  },
+  back: {
+    dumbbell: [
+      {name:"Dumbbell Row",sets:4,reps:"10-12",tutorial:"Ein Knie auf Bank, Hantel zum Hüftgurt ziehen.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Rückenmitte</li><li>Bizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen nah am Körper führen, nicht nach außen.</div>"},
+      {name:"Deadlift",sets:4,reps:"8-10",tutorial:"Hanteln vom Boden heben, Rücken gerade, Hüfte strecken.<h4>Was wird trainiert?</h4><ul><li>Ganzer Rücken</li><li>Beine</li><li>Core</li></ul><div class='tutorial-tip'>💡 Tipp: Rücken gerade halten wie ein Brett – niemals rund!</div>"},
+      {name:"Single-Arm Row",sets:3,reps:"12 pro Arm",tutorial:"Stehend vorgebeugt, einarmig rudern.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Core-Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften gerade halten, nicht zur Seite drehen.</div>"},
+      {name:"Reverse Fly",sets:3,reps:"15",tutorial:"Vorgebeugt, Arme seitlich heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li><li>Oberer Rücken</li></ul><div class='tutorial-tip'>💡 Tipp: Leichtes Gewicht, Fokus auf die Muskeln, nicht auf Schwung.</div>"},
+      {name:"Shrugs",sets:3,reps:"15",tutorial:"Schultern zu den Ohren ziehen.<h4>Was wird trainiert?</h4><ul><li>Trapezmuskel</li><li>Nacken</li></ul><div class='tutorial-tip'>💡 Tipp: Oben kurz halten, dann kontrolliert absenken.</div>"},
+      {name:"Pullover",sets:3,reps:"12",tutorial:"Quer liegen, Hantel hinter den Kopf.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Brust</li><li>Serratus</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen leicht gebeugt halten während der Bewegung.</div>"},
+      {name:"Renegade Row",sets:3,reps:"10 pro Arm",tutorial:"Im Plank, abwechselnd rudern.<h4>Was wird trainiert?</h4><ul><li>Rücken</li><li>Core</li><li>Schulterstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nicht hin- und herwackeln.</div>"},
+      {name:"Bent Over Row",sets:3,reps:"12",tutorial:"Beide Hanteln gleichzeitig rudern.<h4>Was wird trainiert?</h4><ul><li>Rückenmitte</li><li>Latissimus</li></ul><div class='tutorial-tip'>💡 Tipp: Rücken parallel zum Boden, Brust raus.</div>"},
+      {name:"T-Row (DB)",sets:3,reps:"12",tutorial:"Hantel am Boden, einseitig ziehen.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Einseitige Kraft</li></ul><div class='tutorial-tip'>💡 Tipp: Andere Hand zur Stabilisierung auf dem Knie abstützen.</div>"},
+      {name:"Seated Row (Sim)",sets:3,reps:"12",tutorial:"Sitzen, Hanteln zum Bauch ziehen.<h4>Was wird trainiert?</h4><ul><li>Rückenmitte</li><li>Bizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Brust raus, Schultern zurück – keine Rundung!</div>"},
+      {name:"Good Morning",sets:3,reps:"12",tutorial:"Hantel im Nacken, Hüfte beugen.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li><li>Hamstrings</li><li>Hüftmobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Nur mit leichtem Gewicht beginnen, Technik ist alles!</div>"},
+      {name:"Hyperextension (DB)",sets:3,reps:"15",tutorial:"Bauchlage, Oberkörper mit Hantel heben.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li><li>Gesäß</li></ul><div class='tutorial-tip'>💡 Tipp: Nicht überstrecken, nur bis zur geraden Position.</div>"},
+      {name:"Lat Pulldown (Sim)",sets:3,reps:"12",tutorial:"Hantel über Kopf ziehen (imaginäre Stange).<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Bizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Stell dir vor, du ziehst die Ellenbogen in die Hosentaschen.</div>"},
+      {name:"Meadows Row",sets:3,reps:"10",tutorial:"Einseitiges Rudern mit Fokus auf Lat.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Einseitige Kraft</li></ul><div class='tutorial-tip'>💡 Tipp: Benannt nach John Meadows – fortgeschrittene Technik!</div>"},
+      {name:"Kroc Row",sets:3,reps:"20",tutorial:"Schweres einarmiges Rudern.<h4>Was wird trainiert?</h4><ul><li>Rücken</li><li>Griffkraft</li><li>Ausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Viel Schwung erlaubt – aber kontrolliert absenken!</div>"}
+    ],
+    bodyweight: [
+      {name:"Pull-ups",sets:4,reps:"Max",tutorial:"An Stange hochziehen, Kinn über Stange.<h4>Was wird trainiert?</h4><ul><li>Latissimus</li><li>Rücken</li><li>Bizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Brust zur Stange, nicht nur das Kinn!</div>"},
+      {name:"Chin-ups",sets:4,reps:"Max",tutorial:"Handflächen zu dir, hochziehen.<h4>Was wird trainiert?</h4><ul><li>Bizeps</li><li>Latissimus</li></ul><div class='tutorial-tip'>💡 Tipp: Engerer Griff aktiviert mehr den Bizeps.</div>"},
+      {name:"Superman",sets:3,reps:"15-20",tutorial:"Bauchlage, Arme und Beine heben.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li><li>Gesäß</li><li>Hintere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Oben kurz halten für maximale Aktivierung.</div>"},
+      {name:"Inverted Row",sets:3,reps:"12",tutorial:"Unter Tisch/Stange hangeln, hochziehen.<h4>Was wird trainiert?</h4><ul><li>Rückenmitte</li><li>Bizeps</li></ul><div class='tutorial-tip'>💡 Tipp: Je flacher die Position, desto schwerer.</div>"},
+      {name:"Swimmers",sets:3,reps:"20",tutorial:"Bauchlage, Arme und Beine kreuzen.<h4>Was wird trainiert?</h4><ul><li>Rücken</li><li>Koordination</li><li>Ausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Kleine, schnelle Bewegungen – wie Schwimmen!</div>"},
+      {name:"Bridge",sets:3,reps:"15",tutorial:"Rückenlage, Hüfte hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Rücken</li><li>Gesäß</li><li>Hamstrings</li></ul><div class='tutorial-tip'>💡 Tipp: Oben Gesäß aktiv anspannen.</div>"},
+      {name:"Cat-Cow",sets:3,reps:"15",tutorial:"Vierfüßlerstand, Rücken rund und hohl machen.<h4>Was wird trainiert?</h4><ul><li>Mobilität</li><li>Wirbelsäulengesundheit</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt als Aufwärmen oder Cool-Down!</div>"},
+      {name:"Child's Pose",sets:3,reps:"30 Sek",tutorial:"Dehnung für den Rücken.<h4>Was wird trainiert?</h4><ul><li>Entspannung</li><li>Dehnung</li></ul><div class='tutorial-tip'>💡 Tipp: Tief atmen und loslassen.</div>"},
+      {name:"Cobra Stretch",sets:3,reps:"30 Sek",tutorial:"Bauchlage, Oberkörper hochdrücken.<h4>Was wird trainiert?</h4><ul><li>Dehnung</li><li>Brustöffnung</li><li>Vordere Kette</li></ul><div class='tutorial-tip'>💡 Tipp: Nur so hoch wie schmerzfrei möglich.</div>"},
+      {name:"Bird-Dog",sets:3,reps:"10 pro Seite",tutorial:"Vierfüßler, gegenüberliegende Gliedmaßen strecken.<h4>Was wird trainiert?</h4><ul><li>Stabilität</li><li>Core</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert, Hüften gerade halten.</div>"},
+      {name:"Arch Hold",sets:3,reps:"30 Sek",tutorial:"Bauchlage, Oberkörper halten.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li><li>Ausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Blick nach unten, Nacken entspannt lassen.</div>"},
+      {name:"Scapular Pull-up",sets:3,reps:"10",tutorial:"Nur Schulterblätter bewegen im Hang.<h4>Was wird trainiert?</h4><ul><li>Stabilität</li><li>Schultergesundheit</li><li>Vorbereitung für Pull-ups</li></ul><div class='tutorial-tip'>💡 Tipp: Perfekt um Pull-ups zu lernen!</div>"},
+      {name:"Dead Hang",sets:3,reps:"30 Sek",tutorial:"Einfach an der Stange hängen.<h4>Was wird trainiert?</h4><ul><li>Griffkraft</li><li>Dekompression</li><li>Schultermobilität</li></ul><div class='tutorial-tip'>💡 Tipp: Schultern entspannt lassen, tief atmen.</div>"},
+      {name:"Wall Slides",sets:3,reps:"15",tutorial:"Rücken an Wand, Arme auf und ab.<h4>Was wird trainiert?</h4><ul><li>Haltung</li><li>Schultermobilität</li><li>Oberer Rücken</li></ul><div class='tutorial-tip'>💡 Tipp: Ellenbogen und Handrücken an der Wand halten.</div>"},
+      {name:"Prone Y",sets:3,reps:"15",tutorial:"Bauchlage, Arme in Y heben.<h4>Was wird trainiert?</h4><ul><li>Oberer Rücken</li><li>Hintere Schulter</li></ul><div class='tutorial-tip'>💡 Tipp: Daumen nach oben zeigen lassen.</div>"}
+    ],
+    mixed: [
+      {name:"Dumbbell Row",sets:4,reps:"10-12",tutorial:"Einarmig rudern.<h4>Was wird trainiert?</h4><ul><li>Rücken</li></ul>"},
+      {name:"Pull-ups",sets:3,reps:"Max",tutorial:"Hochziehen.<h4>Was wird trainiert?</h4><ul><li>Lat</li></ul>"},
+      {name:"Superman",sets:3,reps:"15-20",tutorial:"Heben im Liegen.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li></ul>"},
+      {name:"Deadlift",sets:3,reps:"8",tutorial:"Vom Boden heben.<h4>Was wird trainiert?</h4><ul><li>Rücken</li></ul>"},
+      {name:"Shrugs",sets:3,reps:"15",tutorial:"Schultern zucken.<h4>Was wird trainiert?</h4><ul><li>Trapez</li></ul>"},
+      {name:"Reverse Fly",sets:3,reps:"15",tutorial:"Vorgebeugt heben.<h4>Was wird trainiert?</h4><ul><li>Hintere Schulter</li></ul>"},
+      {name:"Inverted Row",sets:3,reps:"12",tutorial:"Unter Tisch ziehen.<h4>Was wird trainiert?</h4><ul><li>Rücken</li></ul>"},
+      {name:"Pullover",sets:3,reps:"12",tutorial:"Hantel hinter Kopf.<h4>Was wird trainiert?</h4><ul><li>Lat</li></ul>"},
+      {name:"Renegade Row",sets:3,reps:"10",tutorial:"Im Plank rudern.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Rücken</li></ul>"},
+      {name:"Good Morning",sets:3,reps:"12",tutorial:"Hüfte beugen.<h4>Was wird trainiert?</h4><ul><li>Unterer Rücken</li></ul>"},
+      {name:"Chin-ups",sets:3,reps:"Max",tutorial:"Hochziehen.<h4>Was wird trainiert?</h4><ul><li>Lat</li></ul>"},
+      {name:"Bird-Dog",sets:3,reps:"10",tutorial:"Streckung.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"Hyperextension",sets:3,reps:"15",tutorial:"Oberkörper heben.<h4>Was wird trainiert?</h4><ul><li>Rücken</li></ul>"},
+      {name:"Lat Pulldown (Sim)",sets:3,reps:"12",tutorial:"Ziehen.<h4>Was wird trainiert?</h4><ul><li>Lat</li></ul>"},
+      {name:"Dead Hang",sets:3,reps:"30 Sek",tutorial:"Hängen.<h4>Was wird trainiert?</h4><ul><li>Griff</li></ul>"}
+    ]
+  },
+  cardio: {
+    dumbbell: [
+      {name:"Thrusters",sets:4,reps:"15",tutorial:"Kniebeuge mit Schulterdruck kombinieren.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Cardio</li><li>Kraftausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Flüssige Bewegung – nicht abgehackt!</div>"},
+      {name:"Dumbbell Burpees",sets:3,reps:"10",tutorial:"Burpee mit Hanteln in den Händen.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Kraft</li><li>Ganzkörper</li></ul><div class='tutorial-tip'>💡 Tipp: Leichte Hanteln wählen, Technik vor Geschwindigkeit.</div>"},
+      {name:"Man Makers",sets:3,reps:"10",tutorial:"Burpee mit Rudern und Drücken.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Cardio</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Fortgeschritten! Erst einzelne Komponenten meistern.</div>"},
+      {name:"DB High Knees",sets:3,reps:"30 Sek",tutorial:"Laufen auf der Stelle mit leichten Hanteln.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Beine</li><li>Armaktivierung</li></ul><div class='tutorial-tip'>💡 Tipp: Knie hoch, Arme aktiv mitbewegen.</div>"},
+      {name:"Swings",sets:3,reps:"20",tutorial:"Hantel zwischen Beinen schwingen (wie Kettlebell).<h4>Was wird trainiert?</h4><ul><li>Hüfte</li><li>Cardio</li><li>Hintere Kette</li></ul><div class='tutorial-tip'>💡 Tipp: Aus der Hüfte schwingen, nicht mit den Armen heben!</div>"},
+      {name:"Snatch",sets:3,reps:"10 pro Arm",tutorial:"Hantel vom Boden über Kopf reißen.<h4>Was wird trainiert?</h4><ul><li>Explosivität</li><li>Ganzkörper</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Technik zuerst lernen – Video anschauen oder Coach fragen!</div>"},
+      {name:"Clean & Press",sets:3,reps:"10",tutorial:"Hantel zur Schulter, dann drücken.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Kraft</li><li>Explosivität</li></ul><div class='tutorial-tip'>💡 Tipp: Aus den Beinen starten, nicht nur mit den Armen.</div>"},
+      {name:"Lunges with Twist",sets:3,reps:"12",tutorial:"Ausfallschritt mit Oberkörperdrehung.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Core</li><li>Rotation</li></ul><div class='tutorial-tip'>💡 Tipp: Hantel vor der Brust halten und mitdrehen.</div>"},
+      {name:"Squat Jump (DB)",sets:3,reps:"15",tutorial:"Kniebeuge mit Sprung und Hanteln.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Explosivkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Weich landen wie eine Katze!</div>"},
+      {name:"Renegade Row",sets:3,reps:"10",tutorial:"Schnelles Rudern im Plank.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Rücken</li><li>Cardio</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nicht wackeln.</div>"},
+      {name:"Farmer Walk",sets:3,reps:"60 Sek",tutorial:"Mit schweren Hanteln gehen.<h4>Was wird trainiert?</h4><ul><li>Griffkraft</li><li>Core</li><li>Haltung</li></ul><div class='tutorial-tip'>💡 Tipp: Aufrecht gehen, Schultern zurück, Bauch anspannen.</div>"},
+      {name:"Overhead Walk",sets:3,reps:"30 Sek",tutorial:"Hanteln über Kopf tragen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Core</li><li>Stabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Nur mit gut beherrschtem Gewicht versuchen!</div>"},
+      {name:"Shadow Boxing",sets:3,reps:"60 Sek",tutorial:"Schnelle Schläge mit leichten Hanteln.<h4>Was wird trainiert?</h4><ul><li>Arme</li><li>Cardio</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Füße mitbewegen, nicht nur die Arme!</div>"},
+      {name:"Woodchoppers",sets:3,reps:"20",tutorial:"Schnelle diagonale Bewegung.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Rotation</li><li>Cardio</li></ul><div class='tutorial-tip'>💡 Tipp: Aus der Hüfte drehen, nicht nur mit den Armen.</div>"},
+      {name:"Step-Up Knee Drive",sets:3,reps:"12",tutorial:"Auf Bank steigen, Knie hochziehen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Balance</li></ul><div class='tutorial-tip'>💡 Tipp: Explosiv das Knie hochziehen für mehr Intensität.</div>"}
+    ],
+    bodyweight: [
+      {name:"Jumping Jacks",sets:4,reps:"30 Sek",tutorial:"Arme und Beine spreizen und schließen.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Ganzkörper</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Klassiker! Perfekt zum Aufwärmen.</div>"},
+      {name:"Burpees",sets:4,reps:"10-15",tutorial:"Liegestütz, Sprung, alles kombiniert.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Cardio</li><li>Kraftausdauer</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam beginnen, Technik vor Geschwindigkeit.</div>"},
+      {name:"Mountain Climbers",sets:4,reps:"30 Sek",tutorial:"Laufen im Plank.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Cardio</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil, Knie zur Brust ziehen.</div>"},
+      {name:"High Knees",sets:3,reps:"30 Sek",tutorial:"Auf der Stelle laufen, Knie hoch.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Beine</li><li>Hüftbeuger</li></ul><div class='tutorial-tip'>💡 Tipp: Arme aktiv mitbewegen für mehr Intensität.</div>"},
+      {name:"Butt Kicks",sets:3,reps:"30 Sek",tutorial:"Fersen zum Po laufen.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Hamstrings</li><li>Aufwärmen</li></ul><div class='tutorial-tip'>💡 Tipp: Schnell die Fersen anheben, Oberkörper aufrecht.</div>"},
+      {name:"Skaters",sets:3,reps:"20",tutorial:"Seitlich springen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Seitliche Beweglichkeit</li></ul><div class='tutorial-tip'>💡 Tipp: Lande stabil auf einem Bein, anderes schwingt hinten.</div>"},
+      {name:"Squat Jumps",sets:3,reps:"15",tutorial:"Aus der Hocke springen.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Explosivkraft</li></ul><div class='tutorial-tip'>💡 Tipp: Weich landen und direkt in die nächste Wiederholung.</div>"},
+      {name:"Lunges Jump",sets:3,reps:"12",tutorial:"Ausfallschritt springend wechseln.<h4>Was wird trainiert?</h4><ul><li>Beine</li><li>Cardio</li><li>Plyometrie</li></ul><div class='tutorial-tip'>💡 Tipp: Fortgeschritten! Erst normale Lunges beherrschen.</div>"},
+      {name:"Plank Jacks",sets:3,reps:"20",tutorial:"Im Plank Beine spreizen.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Cardio</li><li>Schulterstabilität</li></ul><div class='tutorial-tip'>💡 Tipp: Hüften stabil halten, nicht auf und ab wippen.</div>"},
+      {name:"Spiderman Climbers",sets:3,reps:"20",tutorial:"Knie zum Ellenbogen im Plank.<h4>Was wird trainiert?</h4><ul><li>Core</li><li>Schräge Bauchmuskeln</li><li>Cardio</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam und kontrolliert für maximale Bauchaktivierung.</div>"},
+      {name:"Bear Crawl",sets:3,reps:"30 Sek",tutorial:"Vierfüßlergang.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li><li>Core</li><li>Koordination</li></ul><div class='tutorial-tip'>💡 Tipp: Knie knapp über dem Boden, Rücken flach.</div>"},
+      {name:"Inchworm",sets:3,reps:"10",tutorial:"Hände vorwärts laufen.<h4>Was wird trainiert?</h4><ul><li>Schultern</li><li>Core</li><li>Hamstrings</li></ul><div class='tutorial-tip'>💡 Tipp: Langsam zurückgehen für mehr Dehnung.</div>"},
+      {name:"Tuck Jumps",sets:3,reps:"10",tutorial:"Knie zur Brust springen.<h4>Was wird trainiert?</h4><ul><li>Explosivität</li><li>Cardio</li><li>Beine</li></ul><div class='tutorial-tip'>💡 Tipp: Lande weich und stabil, Knie nicht nach innen fallen lassen.</div>"},
+      {name:"Star Jumps",sets:3,reps:"10",tutorial:"Sternform im Sprung.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Explosivkraft</li><li>Ganzkörper</li></ul><div class='tutorial-tip'>💡 Tipp: Arme und Beine weit spreizen in der Luft.</div>"},
+      {name:"Running in Place",sets:3,reps:"60 Sek",tutorial:"Schnell laufen auf der Stelle.<h4>Was wird trainiert?</h4><ul><li>Cardio</li><li>Ausdauer</li><li>Beine</li></ul><div class='tutorial-tip'>💡 Tipp: Arme aktiv mitbewegen für mehr Intensität.</div>"}
+    ],
+    mixed: [
+      {name:"Jumping Jacks",sets:3,reps:"30 Sek",tutorial:"Klassisch.<h4>Was wird trainiert?</h4><ul><li>Cardio</li></ul>"},
+      {name:"Thrusters",sets:3,reps:"15",tutorial:"Kniebeuge Druck.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li></ul>"},
+      {name:"Burpees",sets:3,reps:"10-15",tutorial:"Ganzkörper.<h4>Was wird trainiert?</h4><ul><li>Cardio</li></ul>"},
+      {name:"Mountain Climbers",sets:3,reps:"30 Sek",tutorial:"Plank laufen.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"High Knees",sets:3,reps:"30 Sek",tutorial:"Laufen.<h4>Was wird trainiert?</h4><ul><li>Cardio</li></ul>"},
+      {name:"Swings",sets:3,reps:"20",tutorial:"Hantel schwingen.<h4>Was wird trainiert?</h4><ul><li>Hüfte</li></ul>"},
+      {name:"Squat Jump",sets:3,reps:"15",tutorial:"Springen.<h4>Was wird trainiert?</h4><ul><li>Beine</li></ul>"},
+      {name:"Renegade Row",sets:3,reps:"10",tutorial:"Plank Rudern.<h4>Was wird trainiert?</h4><ul><li>Rücken</li></ul>"},
+      {name:"Man Makers",sets:3,reps:"10",tutorial:"Komplex.<h4>Was wird trainiert?</h4><ul><li>Ganzkörper</li></ul>"},
+      {name:"Farmer Walk",sets:3,reps:"60 Sek",tutorial:"Tragen.<h4>Was wird trainiert?</h4><ul><li>Griff</li></ul>"},
+      {name:"Skaters",sets:3,reps:"20",tutorial:"Seitlich springen.<h4>Was wird trainiert?</h4><ul><li>Cardio</li></ul>"},
+      {name:"Bear Crawl",sets:3,reps:"30 Sek",tutorial:"Kriechen.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"},
+      {name:"Shadow Boxing",sets:3,reps:"60 Sek",tutorial:"Schlagen.<h4>Was wird trainiert?</h4><ul><li>Arme</li></ul>"},
+      {name:"Step-Up",sets:3,reps:"12",tutorial:"Steigen.<h4>Was wird trainiert?</h4><ul><li>Beine</li></ul>"},
+      {name:"Plank Jacks",sets:3,reps:"20",tutorial:"Plank spreizen.<h4>Was wird trainiert?</h4><ul><li>Core</li></ul>"}
+    ]
+  }
 };
+
 const muscleNames = {
-legs: "🦵 Beine", chest: "🔥 Brust", arms: "💪 Arme",
-shoulders: "🏋️ Schultern", sixpack: "🎯 Sixpack", back: "🦍 Rücken", cardio: "🏃 Cardio"
+  legs: "🦵 Beine", chest: "🔥 Brust", arms: "💪 Arme",
+  shoulders: "🏋️ Schultern", sixpack: "🎯 Sixpack", back: "🦍 Rücken", cardio: "🏃 Cardio"
 };
 const dayNames = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
 const dayNamesShort = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 const monthNames = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-
-// Avatar-Optionen: 5 Männer, 5 Frauen
 const avatarOptions = [
-{ id: 'm1', emoji: '👨🏻', bg: '#FFDAB9', desc: 'Mann, hell' },
-{ id: 'm2', emoji: '👨🏽', bg: '#D2B48C', desc: 'Mann, mittel' },
-{ id: 'm3', emoji: '👨🏾', bg: '#A0522D', desc: 'Mann, dunkel' },
-{ id: 'm4', emoji: '👨🏻‍🦱', bg: '#FFDAB9', desc: 'Mann, hell, lockig' },
-{ id: 'm5', emoji: '👨🏽‍🦰', bg: '#D2B48C', desc: 'Mann, mittel, rot' },
-{ id: 'w1', emoji: '👩🏻', bg: '#FFDAB9', desc: 'Frau, hell' },
-{ id: 'w2', emoji: '👩🏽', bg: '#D2B48C', desc: 'Frau, mittel' },
-{ id: 'w3', emoji: '👩🏾', bg: '#A0522D', desc: 'Frau, dunkel' },
-{ id: 'w4', emoji: '👩🏻‍🦱', bg: '#FFDAB9', desc: 'Frau, hell, lockig' },
-{ id: 'w5', emoji: '👩🏽‍🦰', bg: '#D2B48C', desc: 'Frau, mittel, rot' }
+  {id:'m1',emoji:'👨🏻',bg:'#FFDAB9',desc:'Mann, hell'}, {id:'m2',emoji:'👨🏽',bg:'#D2B48C',desc:'Mann, mittel'},
+  {id:'m3',emoji:'👨🏾',bg:'#A0522D',desc:'Mann, dunkel'}, {id:'m4',emoji:'👨🏻‍🦱',bg:'#FFDAB9',desc:'Mann, hell, lockig'},
+  {id:'m5',emoji:'👨🏽‍🦰',bg:'#D2B48C',desc:'Mann, mittel, rot'}, {id:'w1',emoji:'👩🏻',bg:'#FFDAB9',desc:'Frau, hell'},
+  {id:'w2',emoji:'👩🏽',bg:'#D2B48C',desc:'Frau, mittel'}, {id:'w3',emoji:'👩🏾',bg:'#A0522D',desc:'Frau, dunkel'},
+  {id:'w4',emoji:'👩🏻‍🦱',bg:'#FFDAB9',desc:'Frau, hell, lockig'}, {id:'w5',emoji:'👩🏽‍🦰',bg:'#D2B48C',desc:'Frau, mittel, rot'}
 ];
 
 // ==================== STATE ====================
-let currentMonth = new Date();
-let selectedDate = null;
-let selectedDayIndex = null;
+let currentMonth = new Date(), selectedDate = null, selectedDayIndex = null;
 let workoutData = { muscleGroups: [], equipment: 'dumbbell' };
-let selectedTypes = [];
-let userProfile = { name: '', avatar: null, avatarCustom: null };
-
-// 🔥 TIMER STATE
-let timerInterval = null;
-let timerSeconds = 60;
-let timerRunning = false;
-let timerInitialSeconds = 60;
+let selectedTypes = [], userProfile = { name: '', avatar: null, avatarCustom: null };
+let timerInterval = null, timerSeconds = 60, timerRunning = false, timerInitialSeconds = 60;
 
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
-document.getElementById('year').textContent = new Date().getFullYear();
-loadUserData();
-checkSetup();
-renderCalendar();
-renderSchedule();
-renderAvatarSelect();
-checkCookies();
-initTimer();
+  document.getElementById('year').textContent = new Date().getFullYear();
+  loadUserData(); checkSetup(); renderCalendar(); renderSchedule(); renderAvatarSelect(); checkCookies(); initTimer();
 });
 
 // ==================== NAVIGATION ====================
 function showSection(id) {
-document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-if (id === 'progress') renderProgress();
-if (id === 'profile') renderProfile();
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'progress') renderProgress(); if (id === 'profile') renderProfile();
 }
-
-// 🔥 Home-Funktion für Logo-Klick
 function goToHome() {
-showSection('calendar');
-renderCalendar();
-document.getElementById('workoutDisplay').style.display = 'none';
-showNotification('🏠 Zurück zur Startseite', 'success');
+  showSection('calendar'); renderCalendar();
+  document.getElementById('workoutDisplay').style.display = 'none';
+  showNotification('🏠 Zurück zur Startseite', 'success');
 }
 
 // ==================== SETUP ====================
 function checkSetup() {
-const setup = localStorage.getItem('workoutApp_setup');
-if (!setup) { 
-showSection('setup'); 
-} else { 
-workoutData = JSON.parse(setup); 
-if (!workoutData.muscleGroups) {
-workoutData.muscleGroups = [];
+  const setup = localStorage.getItem('workoutApp_setup');
+  if (!setup) { showSection('setup'); }
+  else { workoutData = JSON.parse(setup); if (!workoutData.muscleGroups) workoutData.muscleGroups = []; showSection('calendar'); }
 }
-showSection('calendar'); 
-}
-}
-
 function saveSetup() {
-const muscles = [];
-document.querySelectorAll('.checkbox-group input:checked').forEach(cb => muscles.push(cb.value));
-if (muscles.length === 0) { 
-showNotification('Bitte mindestens 1 Muskelgruppe wählen!', 'warning'); 
-return; 
+  const muscles = []; document.querySelectorAll('.checkbox-group input:checked').forEach(cb => muscles.push(cb.value));
+  if (muscles.length === 0) { showNotification('Bitte mindestens 1 Muskelgruppe wählen!', 'warning'); return; }
+  const equipment = document.querySelector('input[name="equipment"]:checked').value;
+  workoutData = { muscleGroups: muscles, equipment: equipment, createdAt: new Date().toISOString() };
+  localStorage.setItem('workoutApp_setup', JSON.stringify(workoutData));
+  const schedule = {}; for (let i = 0; i < 7; i++) schedule[i] = [];
+  localStorage.setItem('workoutApp_schedule', JSON.stringify(schedule));
+  showNotification('✅ Gespeichert!', 'success'); showSection('calendar'); renderSchedule();
 }
-const equipment = document.querySelector('input[name="equipment"]:checked').value;
-workoutData = { 
-muscleGroups: muscles, 
-equipment: equipment, 
-createdAt: new Date().toISOString() 
-};
-localStorage.setItem('workoutApp_setup', JSON.stringify(workoutData));
-const schedule = {}; 
-for (let i = 0; i < 7; i++) schedule[i] = [];
-localStorage.setItem('workoutApp_schedule', JSON.stringify(schedule));
-showNotification('✅ Gespeichert!', 'success');
-showSection('calendar'); 
-renderSchedule();
-}
-
-function resetSetup() {
-if (confirm('Setup zurücksetzen?')) {
-localStorage.removeItem('workoutApp_setup');
-localStorage.removeItem('workoutApp_schedule');
-localStorage.removeItem('workoutApp_logs');
-location.reload();
-}
-}
-
-function clearAllData() {
-if (confirm('⚠️ ALLE Daten löschen?')) { 
-localStorage.clear(); 
-location.reload(); 
-}
-}
+function resetSetup() { if (confirm('Setup zurücksetzen?')) { localStorage.removeItem('workoutApp_setup'); localStorage.removeItem('workoutApp_schedule'); localStorage.removeItem('workoutApp_logs'); location.reload(); } }
+function clearAllData() { if (confirm('⚠️ ALLE Daten löschen?')) { localStorage.clear(); location.reload(); } }
 
 // ==================== PROFILE & AVATAR ====================
 function renderAvatarSelect() {
-const container = document.getElementById('avatarSelect');
-container.innerHTML = '';
-avatarOptions.forEach(opt => {
-const div = document.createElement('div');
-div.className = 'avatar-option';
-div.style.background = opt.bg;
-div.textContent = opt.emoji;
-div.title = opt.desc;
-if (userProfile.avatar === opt.id) div.classList.add('selected');
-div.onclick = () => selectAvatar(opt.id, div);
-container.appendChild(div);
-});
+  const container = document.getElementById('avatarSelect'); container.innerHTML = '';
+  avatarOptions.forEach(opt => {
+    const div = document.createElement('div'); div.className = 'avatar-option'; div.style.background = opt.bg; div.textContent = opt.emoji; div.title = opt.desc;
+    if (userProfile.avatar === opt.id) div.classList.add('selected');
+    div.onclick = () => selectAvatar(opt.id, div); container.appendChild(div);
+  });
 }
-
-function selectAvatar(id, el) {
-userProfile.avatar = id; 
-userProfile.avatarCustom = null;
-document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
-el.classList.add('selected'); 
-updateAvatarPreview();
-}
-
+function selectAvatar(id, el) { userProfile.avatar = id; userProfile.avatarCustom = null; document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected')); el.classList.add('selected'); updateAvatarPreview(); }
 function updateAvatarPreview() {
-const preview = document.getElementById('avatarPreview');
-if (userProfile.avatarCustom) {
-preview.style.background = 'none';
-preview.style.backgroundImage = `url(${userProfile.avatarCustom})`;
-preview.style.backgroundSize = 'cover';
-preview.style.backgroundPosition = 'center';
-preview.textContent = '';
-} else if (userProfile.avatar) {
-const opt = avatarOptions.find(o => o.id === userProfile.avatar);
-if (opt) { 
-preview.style.background = opt.bg; 
-preview.style.backgroundImage = 'none'; 
-preview.textContent = opt.emoji; 
+  const preview = document.getElementById('avatarPreview');
+  if (userProfile.avatarCustom) { preview.style.background = 'none'; preview.style.backgroundImage = `url(${userProfile.avatarCustom})`; preview.style.backgroundSize = 'cover'; preview.style.backgroundPosition = 'center'; preview.textContent = ''; }
+  else if (userProfile.avatar) { const opt = avatarOptions.find(o => o.id === userProfile.avatar); if (opt) { preview.style.background = opt.bg; preview.style.backgroundImage = 'none'; preview.textContent = opt.emoji; } }
+  else { preview.style.background = 'var(--gradient)'; preview.style.backgroundImage = 'none'; preview.textContent = '👤'; }
 }
-} else {
-preview.style.background = 'var(--gradient)'; 
-preview.style.backgroundImage = 'none'; 
-preview.textContent = '👤';
-}
-}
-
 document.getElementById('avatarUpload')?.addEventListener('change', function(e) {
-const file = e.target.files[0];
-if (file && file.type.startsWith('image/')) {
-const reader = new FileReader();
-reader.onload = function(event) {
-userProfile.avatarCustom = event.target.result; 
-userProfile.avatar = null;
-document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
-updateAvatarPreview(); 
-showNotification('✅ Bild hochgeladen!', 'success');
-};
-reader.readAsDataURL(file);
-}
+  const file = e.target.files[0]; if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader(); reader.onload = function(event) { userProfile.avatarCustom = event.target.result; userProfile.avatar = null; document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected')); updateAvatarPreview(); showNotification('✅ Bild hochgeladen!', 'success'); };
+    reader.readAsDataURL(file);
+  }
 });
-
-function saveProfile() {
-const nameInput = document.getElementById('userName');
-userProfile.name = nameInput.value.trim();
-localStorage.setItem('workoutApp_profile', JSON.stringify(userProfile));
-renderProfile(); 
-showNotification('✅ Profil gespeichert!', 'success');
-}
-
-document.getElementById('userName')?.addEventListener('input', function() { 
-userProfile.name = this.value.trim(); 
-});
+function saveProfile() { const nameInput = document.getElementById('userName'); userProfile.name = nameInput.value.trim(); localStorage.setItem('workoutApp_profile', JSON.stringify(userProfile)); renderProfile(); showNotification('✅ Profil gespeichert!', 'success'); }
+document.getElementById('userName')?.addEventListener('input', function() { userProfile.name = this.value.trim(); });
 
 // ==================== SCHEDULE ====================
 function renderSchedule() {
-const grid = document.getElementById('scheduleGrid');
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-grid.innerHTML = '';
-dayNames.forEach((day, i) => {
-const div = document.createElement('div');
-div.className = 'schedule-day';
-if (selectedDayIndex === i) div.classList.add('selected');
-const types = schedule[i] || [];
-let html = types.length > 0 
-? types.map(t => `<span class="schedule-day-workout">${muscleNames[t].split(' ')[1]}</span>`).join('') 
-: '<span class="schedule-day-workout empty">-</span>';
-div.innerHTML = `<div class="schedule-day-name">${day}</div><div class="schedule-day-workouts">${html}</div>`;
-div.onclick = () => openTypeModal(i);
-grid.appendChild(div);
-});
+  const grid = document.getElementById('scheduleGrid'); const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); grid.innerHTML = '';
+  dayNames.forEach((day, i) => {
+    const div = document.createElement('div'); div.className = 'schedule-day'; if (selectedDayIndex === i) div.classList.add('selected');
+    const types = schedule[i] || []; let html = types.length > 0 ? types.map(t => `<span class="schedule-day-workout">${muscleNames[t].split(' ')[1]}</span>`).join('') : '<span class="schedule-day-workout empty">-</span>';
+    div.innerHTML = `<div class="schedule-day-name">${day}</div><div class="schedule-day-workouts">${html}</div>`; div.onclick = () => openTypeModal(i); grid.appendChild(div);
+  });
 }
-
-// ✅ HIER WAR DER FEHLER - Jetzt korrigiert:
 function openTypeModal(dayIndex) {
-if (!workoutData || !workoutData.muscleGroups || workoutData.muscleGroups.length === 0) {
-showNotification('⚠️ Bitte erst Setup durchführen!', 'warning');
-showSection('setup');
-return;
+  if (!workoutData || !workoutData.muscleGroups || workoutData.muscleGroups.length === 0) { showNotification('⚠️ Bitte erst Setup durchführen!', 'warning'); showSection('setup'); return; }
+  selectedDayIndex = dayIndex; document.getElementById('selectedDayName').textContent = dayNames[dayIndex];
+  const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); selectedTypes = schedule[dayIndex] || [];
+  const grid = document.getElementById('typeGrid'); grid.innerHTML = '';
+  workoutData.muscleGroups.forEach(muscle => { const btn = document.createElement('div'); btn.className = 'workout-type-btn' + (selectedTypes.includes(muscle) ? ' selected' : ''); btn.textContent = muscleNames[muscle].split(' ')[1]; btn.onclick = () => toggleType(muscle, btn); grid.appendChild(btn); });
+  updateSelectedList(); document.getElementById('typeModal').classList.add('active');
 }
-
-selectedDayIndex = dayIndex;
-document.getElementById('selectedDayName').textContent = dayNames[dayIndex];
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-selectedTypes = schedule[dayIndex] || [];
-const grid = document.getElementById('typeGrid'); 
-grid.innerHTML = '';
-
-workoutData.muscleGroups.forEach(muscle => {
-const btn = document.createElement('div');
-btn.className = 'workout-type-btn' + (selectedTypes.includes(muscle) ? ' selected' : '');
-btn.textContent = muscleNames[muscle].split(' ')[1];
-btn.onclick = () => toggleType(muscle, btn);
-grid.appendChild(btn);
-});
-updateSelectedList(); 
-document.getElementById('typeModal').classList.add('active');
-}
-
-function toggleType(type, btn) {
-const idx = selectedTypes.indexOf(type);
-if (idx > -1) { 
-selectedTypes.splice(idx, 1); 
-btn.classList.remove('selected'); 
-} else { 
-selectedTypes.push(type); 
-btn.classList.add('selected'); 
-}
-updateSelectedList();
-}
-
-function updateSelectedList() {
-const list = document.getElementById('selectedList');
-list.innerHTML = selectedTypes.length > 0 
-? `<h4>Ausgewählt:</h4>${selectedTypes.map(t => `<span class="selected-tag">${muscleNames[t]}</span>`).join('')}` 
-: '<h4>Keine Auswahl</h4>';
-}
-
-function confirmWorkoutType() {
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-schedule[selectedDayIndex] = selectedTypes;
-localStorage.setItem('workoutApp_schedule', JSON.stringify(schedule));
-closeTypeModal(); 
-renderSchedule(); 
-renderCalendar(); 
-showNotification('✅ Gespeichert!', 'success');
-}
-
-function clearDay() { 
-selectedTypes = []; 
-updateSelectedList(); 
-document.querySelectorAll('.workout-type-btn').forEach(b => b.classList.remove('selected')); 
-}
-
-function closeTypeModal() { 
-document.getElementById('typeModal').classList.remove('active'); 
-}
+function toggleType(type, btn) { const idx = selectedTypes.indexOf(type); if (idx > -1) { selectedTypes.splice(idx, 1); btn.classList.remove('selected'); } else { selectedTypes.push(type); btn.classList.add('selected'); } updateSelectedList(); }
+function updateSelectedList() { const list = document.getElementById('selectedList'); list.innerHTML = selectedTypes.length > 0 ? `<h4>Ausgewählt:</h4>${selectedTypes.map(t => `<span class="selected-tag">${muscleNames[t]}</span>`).join('')}` : '<h4>Keine Auswahl</h4>'; }
+function confirmWorkoutType() { const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); schedule[selectedDayIndex] = selectedTypes; localStorage.setItem('workoutApp_schedule', JSON.stringify(schedule)); closeTypeModal(); renderSchedule(); renderCalendar(); showNotification('✅ Gespeichert!', 'success'); }
+function clearDay() { selectedTypes = []; updateSelectedList(); document.querySelectorAll('.workout-type-btn').forEach(b => b.classList.remove('selected')); }
+function closeTypeModal() { document.getElementById('typeModal').classList.remove('active'); }
 
 // ==================== CALENDAR ====================
 function renderCalendar() {
-const grid = document.getElementById('calendarGrid');
-const label = document.getElementById('currentMonth');
-const year = currentMonth.getFullYear(); 
-const month = currentMonth.getMonth();
-label.textContent = `${monthNames[month]} ${year}`; 
-grid.innerHTML = '';
-dayNamesShort.forEach(day => { 
-const header = document.createElement('div'); 
-header.className = 'calendar-day-header'; 
-header.textContent = day; 
-grid.appendChild(header); 
-});
-const firstDay = new Date(year, month, 1); 
-let startDay = firstDay.getDay() - 1; 
-if (startDay < 0) startDay = 6;
-const daysInMonth = new Date(year, month + 1, 0).getDate(); 
-const today = new Date();
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}');
-for (let i = 0; i < startDay; i++) grid.appendChild(document.createElement('div'));
-for (let day = 1; day <= daysInMonth; day++) {
-const date = new Date(year, month, day); 
-const dateStr = date.toISOString().split('T')[0];
-let dayOfWeek = date.getDay() - 1; 
-if (dayOfWeek < 0) dayOfWeek = 6;
-const cell = document.createElement('div'); 
-cell.className = 'calendar-day';
-if (date.toDateString() === today.toDateString()) cell.classList.add('today');
-if (logs[dateStr]) cell.classList.add('has-workout');
-const types = schedule[dayOfWeek] || [];
-let workouts = types.slice(0, 2).map(t => `<span class="day-workout">${muscleNames[t].split(' ')[1]}</span>`).join('');
-if (types.length > 2) workouts += `<span class="day-workout">+${types.length - 2}</span>`;
-cell.innerHTML = `<span class="day-number">${day}</span>${workouts}`;
-cell.onclick = () => selectDate(date, dayOfWeek); 
-grid.appendChild(cell);
+  const grid = document.getElementById('calendarGrid'); const label = document.getElementById('currentMonth'); const year = currentMonth.getFullYear(); const month = currentMonth.getMonth();
+  label.textContent = `${monthNames[month]} ${year}`; grid.innerHTML = ''; dayNamesShort.forEach(day => { const header = document.createElement('div'); header.className = 'calendar-day-header'; header.textContent = day; grid.appendChild(header); });
+  const firstDay = new Date(year, month, 1); let startDay = firstDay.getDay() - 1; if (startDay < 0) startDay = 6;
+  const daysInMonth = new Date(year, month + 1, 0).getDate(); const today = new Date();
+  const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}');
+  for (let i = 0; i < startDay; i++) grid.appendChild(document.createElement('div'));
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day); const dateStr = date.toISOString().split('T')[0];
+    let dayOfWeek = date.getDay() - 1; if (dayOfWeek < 0) dayOfWeek = 6;
+    const cell = document.createElement('div'); cell.className = 'calendar-day';
+    if (date.toDateString() === today.toDateString()) cell.classList.add('today'); if (logs[dateStr]) cell.classList.add('has-workout');
+    const types = schedule[dayOfWeek] || []; let workouts = types.slice(0, 2).map(t => `<span class="day-workout">${muscleNames[t].split(' ')[1]}</span>`).join(''); if (types.length > 2) workouts += `<span class="day-workout">+${types.length - 2}</span>`;
+    cell.innerHTML = `<span class="day-number">${day}</span>${workouts}`; cell.onclick = () => selectDate(date, dayOfWeek); grid.appendChild(cell);
+  }
 }
-}
-
-function changeMonth(delta) { 
-currentMonth.setMonth(currentMonth.getMonth() + delta); 
-renderCalendar(); 
-}
-
-function goToToday() { 
-currentMonth = new Date(); 
-renderCalendar(); 
-}
-
+function changeMonth(delta) { currentMonth.setMonth(currentMonth.getMonth() + delta); renderCalendar(); }
+function goToToday() { currentMonth = new Date(); renderCalendar(); }
 function selectDate(date, dayOfWeek) {
-selectedDate = date;
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-const types = schedule[dayOfWeek] || [];
-if (types.length === 0) { 
-document.getElementById('workoutDisplay').style.display = 'none'; 
-showNotification('Kein Workout geplant!', 'warning'); 
-return; 
+  selectedDate = date; const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); const types = schedule[dayOfWeek] || [];
+  if (types.length === 0) { document.getElementById('workoutDisplay').style.display = 'none'; showNotification('Kein Workout geplant!', 'warning'); return; }
+  document.getElementById('workoutDisplay').style.display = 'block';
+  document.getElementById('workoutTitle').textContent = `Workout - ${date.toLocaleDateString('de-DE')}`;
+  document.getElementById('workoutSubtitle').textContent = types.map(t => muscleNames[t]).join(' + '); renderExercises(types);
 }
-document.getElementById('workoutDisplay').style.display = 'block';
-document.getElementById('workoutTitle').textContent = `Workout - ${date.toLocaleDateString('de-DE')}`;
-document.getElementById('workoutSubtitle').textContent = types.map(t => muscleNames[t]).join(' + ');
-renderExercises(types);
-}
-
 function renderExercises(types) {
-const content = document.getElementById('workoutContent');
-const equipment = workoutData.equipment; 
-content.innerHTML = '';
-types.forEach(muscle => {
-const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
-const section = document.createElement('div'); 
-section.className = 'muscle-section';
-section.innerHTML = `<h3 class="muscle-title">${muscleNames[muscle]}</h3><ul class="exercise-list">` +
-exercises.map(ex => `<li class="exercise-item"><div class="exercise-name">${ex.name}</div><div class="exercise-info"><span>📋 ${ex.sets} Sätze</span><span>🔁 ${ex.reps}</span></div></li>`).join('') + '</ul>';
-content.appendChild(section);
-});
+  const content = document.getElementById('workoutContent'); const equipment = workoutData.equipment; content.innerHTML = '';
+  types.forEach(muscle => {
+    const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
+    const section = document.createElement('div'); section.className = 'muscle-section';
+    section.innerHTML = `<h3 class="muscle-title">${muscleNames[muscle]}</h3><ul class="exercise-list">` + exercises.map(ex => `<li class="exercise-item"><div class="exercise-name">${ex.name}</div><div class="exercise-info"><span>📋 ${ex.sets} Sätze</span><span>🔁 ${ex.reps}</span></div></li>`).join('') + '</ul>';
+    content.appendChild(section);
+  });
 }
 
+// ✅ WORKOUT: Reihenfolge Sätze → Wiederholungen → Gewicht + Tutorial Button
 function startWorkout() {
-if (!selectedDate) return;
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-let dayOfWeek = selectedDate.getDay() - 1; 
-if (dayOfWeek < 0) dayOfWeek = 6;
-const types = schedule[dayOfWeek] || []; 
-const equipment = workoutData.equipment;
-const modal = document.getElementById('workoutModal'); 
-const modalEx = document.getElementById('modalExercises');
-document.getElementById('modalTitle').textContent = types.map(t => muscleNames[t]).join(' + '); 
-modalEx.innerHTML = '';
-types.forEach(muscle => {
-const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
-const section = document.createElement('div'); 
-section.className = 'muscle-section';
-section.innerHTML = `<h3 class="muscle-title">${muscleNames[muscle]}</h3>`;
-exercises.forEach((ex, i) => {
-const idx = `${muscle}-${i}`; 
-const div = document.createElement('div'); 
-div.className = 'exercise-item';
-div.innerHTML = `<div class="exercise-name">${ex.name}</div><div class="exercise-info"><span>📋 ${ex.sets} Sätze</span><span>🔁 ${ex.reps}</span></div><div class="exercise-inputs">
-<div class="input-group"><label>Sätze</label><input type="number" id="sets-${idx}" value="${ex.sets}"></div>
-<div class="input-group"><label>Wiederholungen</label><input type="number" id="reps-${idx}" value="10"></div>
-${(equipment === 'dumbbell' || equipment === 'mixed') ? `<div class="input-group"><label>Gewicht (kg)</label><input type="number" id="weight-${idx}" value="0" step="0.5"></div>` : ''}
-</div>`; 
-section.appendChild(div);
-}); 
-modalEx.appendChild(section);
-}); 
-modal.classList.add('active');
-
-// 🔥 Timer anzeigen beim Workout-Start
-showTimer();
+  if (!selectedDate) return;
+  const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
+  let dayOfWeek = selectedDate.getDay() - 1; if (dayOfWeek < 0) dayOfWeek = 6;
+  const types = schedule[dayOfWeek] || []; const equipment = workoutData.equipment;
+  const modal = document.getElementById('workoutModal'); const modalEx = document.getElementById('modalExercises');
+  document.getElementById('modalTitle').textContent = types.map(t => muscleNames[t]).join(' + '); modalEx.innerHTML = '';
+  types.forEach(muscle => {
+    const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
+    const section = document.createElement('div'); section.className = 'muscle-section'; section.innerHTML = `<h3 class="muscle-title">${muscleNames[muscle]}</h3>`;
+    exercises.forEach((ex, i) => {
+      const idx = `${muscle}-${i}`; const div = document.createElement('div'); div.className = 'exercise-item';
+      // Tutorial Button mit klarer Anleitung
+      div.innerHTML = `<div class="exercise-name">${ex.name} <button class="nav-btn btn-secondary" style="padding:5px 10px;font-size:0.8rem;" onclick="showTutorial('${ex.name.replace(/'/g,"\\'")}', \`<p>${ex.tutorial}</p>\`)">ℹ️ Anleitung</button></div><div class="exercise-info"><span>📋 ${ex.sets} Sätze</span><span>🔁 ${ex.reps}</span></div><div class="exercise-inputs">
+        <div class="input-group"><label>1️⃣ Sätze geschafft</label><input type="number" id="sets-${idx}" value="${ex.sets}" min="0"></div>
+        <div class="input-group"><label>2️⃣ Wiederholungen</label><input type="number" id="reps-${idx}" value="10" min="0"></div>
+        ${(equipment === 'dumbbell' || equipment === 'mixed') ? `<div class="input-group"><label>3️⃣ Gewicht (kg) <small>(pro Hand bei Hanteln)</small></label><input type="number" id="weight-${idx}" value="0" step="0.5" min="0"></div>` : ''}
+      </div>`;
+      section.appendChild(div);
+    });
+    modalEx.appendChild(section);
+  });
+  modal.classList.add('active'); showTimer();
 }
-
-function closeModal() { 
-document.getElementById('workoutModal').classList.remove('active'); 
-}
+function closeModal() { document.getElementById('workoutModal').classList.remove('active'); }
 
 function completeWorkout() {
-if (!selectedDate) return;
-let dayOfWeek = selectedDate.getDay() - 1; 
-if (dayOfWeek < 0) dayOfWeek = 6;
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-const types = schedule[dayOfWeek] || []; 
-const equipment = workoutData.equipment;
-const dateStr = selectedDate.toISOString().split('T')[0];
-const log = { date: dateStr, workoutTypes: types, exercises: [] };
-types.forEach(muscle => {
-const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
-exercises.forEach((ex, i) => {
-const idx = `${muscle}-${i}`;
-log.exercises.push({ 
-name: ex.name, 
-muscleGroup: muscle, 
-sets: parseInt(document.getElementById(`sets-${idx}`)?.value) || 0, 
-reps: parseInt(document.getElementById(`reps-${idx}`)?.value) || 0, 
-weight: parseFloat(document.getElementById(`weight-${idx}`)?.value) || 0 
-});
-});
-});
-const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}'); 
-logs[dateStr] = log;
-localStorage.setItem('workoutApp_logs', JSON.stringify(logs)); 
-closeModal(); 
-renderCalendar(); 
-showNotification('✅ Workout abgeschlossen! 💪', 'success');
+  if (!selectedDate) return; let dayOfWeek = selectedDate.getDay() - 1; if (dayOfWeek < 0) dayOfWeek = 6;
+  const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}'); const types = schedule[dayOfWeek] || [];
+  const equipment = workoutData.equipment; const dateStr = selectedDate.toISOString().split('T')[0];
+  const log = { date: dateStr, workoutTypes: types, exercises: [] };
+  types.forEach(muscle => {
+    const exercises = exerciseDB[muscle][equipment] || exerciseDB[muscle].bodyweight;
+    exercises.forEach((ex, i) => {
+      const idx = `${muscle}-${i}`;
+      log.exercises.push({ name: ex.name, muscleGroup: muscle, sets: parseInt(document.getElementById(`sets-${idx}`)?.value) || 0, reps: parseInt(document.getElementById(`reps-${idx}`)?.value) || 0, weight: parseFloat(document.getElementById(`weight-${idx}`)?.value) || 0 });
+    });
+  });
+  const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}'); logs[dateStr] = log; localStorage.setItem('workoutApp_logs', JSON.stringify(logs));
+  closeModal(); renderCalendar(); showNotification('✅ Workout abgeschlossen! 💪', 'success');
 }
 
 // ==================== PROGRESS ====================
 function renderProgress() {
-const grid = document.getElementById('progressGrid');
-const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}');
-const dates = Object.keys(logs).sort();
-if (dates.length === 0) { 
-grid.innerHTML = '<div class="progress-card"><p>Noch keine Daten.</p></div>'; 
-return; 
-}
-let byType = {}; 
-let best = {};
-dates.forEach(date => {
-const log = logs[date]; 
-(log.workoutTypes || []).forEach(t => { 
-byType[t] = (byType[t] || 0) + 1; 
-});
-log.exercises.forEach(ex => { 
-if (!best[ex.name]) best[ex.name] = { weight: 0, reps: 0 }; 
-if (ex.weight > best[ex.name].weight) best[ex.name].weight = ex.weight; 
-if (ex.reps > best[ex.name].reps) best[ex.name].reps = ex.reps; 
-});
-});
-grid.innerHTML = `<div class="progress-card"><h3>📈 Übersicht</h3><div class="progress-item"><span>Workouts:</span><span class="progress-value">${dates.length}</span></div><div class="progress-item"><span>Erstes:</span><span class="progress-value">${dates[0]}</span></div><div class="progress-item"><span>Letztes:</span><span class="progress-value">${dates[dates.length - 1]}</span></div></div>
-<div class="progress-card"><h3>🏋️ Nach Muskelgruppe</h3>${Object.entries(byType).map(([t, c]) => `<div class="progress-item"><span>${muscleNames[t]}</span><span class="progress-value">${c}x</span></div>`).join('')}</div>
-<div class="progress-card"><h3>🎯 Bestwerte</h3>${Object.entries(best).slice(0, 8).map(([n, s]) => `<div class="progress-item"><span>${n}</span><span class="progress-value">${s.weight > 0 ? s.weight + 'kg × ' : ''}${s.reps}</span></div>`).join('')}</div>`;
+  const grid = document.getElementById('progressGrid'); const logs = JSON.parse(localStorage.getItem('workoutApp_logs') || '{}'); const dates = Object.keys(logs).sort();
+  if (dates.length === 0) { grid.innerHTML = '<div class="progress-card"><p>Noch keine Daten.</p></div>'; return; }
+  let byType = {}, best = {};
+  dates.forEach(date => { const log = logs[date]; (log.workoutTypes || []).forEach(t => { byType[t] = (byType[t] || 0) + 1; }); log.exercises.forEach(ex => { if (!best[ex.name]) best[ex.name] = { weight: 0, reps: 0 }; if (ex.weight > best[ex.name].weight) best[ex.name].weight = ex.weight; if (ex.reps > best[ex.name].reps) best[ex.name].reps = ex.reps; }); });
+  grid.innerHTML = `<div class="progress-card"><h3>📈 Übersicht</h3><div class="progress-item"><span>Workouts:</span><span class="progress-value">${dates.length}</span></div><div class="progress-item"><span>Erstes:</span><span class="progress-value">${dates[0]}</span></div><div class="progress-item"><span>Letztes:</span><span class="progress-value">${dates[dates.length - 1]}</span></div></div><div class="progress-card"><h3>🏋️ Nach Muskelgruppe</h3>${Object.entries(byType).map(([t, c]) => `<div class="progress-item"><span>${muscleNames[t]}</span><span class="progress-value">${c}x</span></div>`).join('')}</div><div class="progress-card"><h3>🎯 Bestwerte</h3>${Object.entries(best).slice(0, 8).map(([n, s]) => `<div class="progress-item"><span>${n}</span><span class="progress-value">${s.weight > 0 ? s.weight + 'kg × ' : ''}${s.reps}</span></div>`).join('')}</div>`;
 }
 
 // ==================== PROFILE RENDER ====================
 function renderProfile() {
-const displayName = userProfile.name || 'Gast';
-document.getElementById('profileName').textContent = displayName;
-document.getElementById('userName').value = userProfile.name || '';
-document.getElementById('profileEquipment').textContent = workoutData.equipment === 'dumbbell' ? '🏋️ Hanteln' : workoutData.equipment === 'bodyweight' ? '💪 Körpergewicht' : '🔄 Beides';
-document.getElementById('profileMuscles').textContent = workoutData.muscleGroups?.map(m => muscleNames[m]).join(', ') || '-';
-const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
-document.getElementById('profileSchedule').textContent = dayNames.map((d, i) => { 
-const types = schedule[i] || []; 
-return types.length > 0 ? `${d}: ${types.map(t => muscleNames[t].split(' ')[1]).join(' + ')}` : null; 
-}).filter(s => s).join(' | ') || '-';
-updateAvatarPreview();
+  const displayName = userProfile.name || 'Gast'; document.getElementById('profileName').textContent = displayName; document.getElementById('userName').value = userProfile.name || '';
+  document.getElementById('profileEquipment').textContent = workoutData.equipment === 'dumbbell' ? '🏋️ Hanteln' : workoutData.equipment === 'bodyweight' ? '💪 Körpergewicht' : '🔄 Beides';
+  document.getElementById('profileMuscles').textContent = workoutData.muscleGroups?.map(m => muscleNames[m]).join(', ') || '-';
+  const schedule = JSON.parse(localStorage.getItem('workoutApp_schedule') || '{}');
+  document.getElementById('profileSchedule').textContent = dayNames.map((d, i) => { const types = schedule[i] || []; return types.length > 0 ? `${d}: ${types.map(t => muscleNames[t].split(' ')[1]).join(' + ')}` : null; }).filter(s => s).join(' | ') || '-';
+  updateAvatarPreview();
 }
 
 // ==================== NOTIFICATION ====================
-function showNotification(msg, type = '') {
-const n = document.getElementById('notification'); 
-n.textContent = msg; 
-n.className = 'notification show ' + type;
-setTimeout(() => n.classList.remove('show'), 4000);
-}
-
-// ==================== LOAD ====================
-function loadUserData() {
-const setup = localStorage.getItem('workoutApp_setup'); 
-if (setup) {
-workoutData = JSON.parse(setup);
-if (!workoutData.muscleGroups) {
-workoutData.muscleGroups = [];
-}
-}
-const profile = localStorage.getItem('workoutApp_profile'); 
-if (profile) {
-userProfile = JSON.parse(profile);
-}
-}
+function showNotification(msg, type = '') { const n = document.getElementById('notification'); n.textContent = msg; n.className = 'notification show ' + type; setTimeout(() => n.classList.remove('show'), 4000); }
+function loadUserData() { const setup = localStorage.getItem('workoutApp_setup'); if (setup) { workoutData = JSON.parse(setup); if (!workoutData.muscleGroups) workoutData.muscleGroups = []; } const profile = localStorage.getItem('workoutApp_profile'); if (profile) userProfile = JSON.parse(profile); }
 
 // ==================== COOKIES & LEGAL ====================
-function checkCookies() { 
-if (!localStorage.getItem('workoutApp_cookiesAccepted')) { 
-document.getElementById('cookieBanner').style.display = 'flex'; 
-} 
-}
-
-function acceptCookies() { 
-localStorage.setItem('workoutApp_cookiesAccepted', 'true'); 
-document.getElementById('cookieBanner').style.display = 'none'; 
-showNotification('✅ Einstellungen gespeichert', 'success'); 
-}
-
+function checkCookies() { if (!localStorage.getItem('workoutApp_cookiesAccepted')) document.getElementById('cookieBanner').style.display = 'flex'; }
+function acceptCookies() { localStorage.setItem('workoutApp_cookiesAccepted', 'true'); document.getElementById('cookieBanner').style.display = 'none'; showNotification('✅ Einstellungen gespeichert', 'success'); }
 function openLegalModal(type) {
-const modal = document.getElementById('legalModal'); 
-const title = document.getElementById('legalModalTitle'); 
-const content = document.getElementById('legalModalContent'); 
-modal.classList.add('active');
-if (type === 'impressum') {
-title.textContent = 'Impressum';
-content.innerHTML = `<p><strong>Angaben gemäß § 5 TMG:</strong></p><p>Vincent Zubak<br>Hertha-Müller-Straße 12<br>74257</p><p><strong>Kontakt:</strong><br>Telefon: +49 152 04467309<br>E-Mail: vincent.zubak@googlemail.com</p><p><strong>Streitschlichtung:</strong><br>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=DE" target="_blank" style="color: var(--primary);">https://ec.europa.eu/consumers/odr/</a><br>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p><p><em>Hinweis: Dies ist ein Platzhalter. Für volle Rechtssicherheit sollte ein Anwalt oder Generator konsultiert werden.</em></p>`;
-} else if (type === 'datenschutz') {
-title.textContent = 'Datenschutzerklärung';
-content.innerHTML = `<p><strong>1. Datenschutz auf einen Blick</strong></p><p><strong>Allgemeine Hinweise:</strong> Diese App speichert Daten ausschließlich lokal auf deinem Endgerät (LocalStorage). Es werden keine Daten an externe Server übertragen.</p><p><strong>2. Datenerfassung auf dieser Website</strong></p><p><strong>LocalStorage:</strong> Diese App nutzt LocalStorage, um deine Trainingspläne, Fortschritte und Profilinformationen (Name, Avatar) zu speichern. Diese Daten verbleiben auf deinem Gerät und werden nicht an Dritte weitergegeben.</p><p><strong>Bilder-Upload:</strong> Wenn du ein eigenes Profilbild hochlädst, wird dieses als Base64-String lokal gespeichert. Das Bild verlässt niemals dein Gerät.</p><p><strong>3. Cookies</strong></p><p>Die App verwendet einen Cookie-Hinweis, um die Zustimmung zur lokalen Speicherung zu dokumentieren. Es werden keine Tracking-Cookies gesetzt.</p><p><strong>4. Deine Rechte</strong></p><p>Du kannst jederzeit alle gespeicherten Daten über die Funktion "Alle Daten löschen" im Profil entfernen.</p><p><strong>5. Kontakt</strong></p><p>Bei Fragen zum Datenschutz kontaktiere uns unter: vincent.zubak@googlemail.com</p><p><em>Hinweis: Dies ist ein Basis-Text. Für volle Rechtssicherheit sollte ein spezialisierter Generator oder Anwalt konsultiert werden.</em></p>`;
+  const modal = document.getElementById('legalModal'); const title = document.getElementById('legalModalTitle'); const content = document.getElementById('legalModalContent'); modal.classList.add('active');
+  if (type === 'impressum') { title.textContent = 'Impressum'; content.innerHTML = `<p><strong>Angaben gemäß § 5 TMG:</strong></p><p>Vincent Zubak<br>Hertha-Müller-Straße 12<br>74257</p><p><strong>Kontakt:</strong><br>Telefon: +49 152 04467309<br>E-Mail: vincent.zubak@googlemail.com</p><p><em>Hinweis: Platzhalter – für volle Rechtssicherheit Anwalt konsultieren.</em></p>`; }
+  else if (type === 'datenschutz') { title.textContent = 'Datenschutzerklärung'; content.innerHTML = `<p><strong>1. Datenschutz auf einen Blick</strong></p><p><strong>Allgemeine Hinweise:</strong> Diese App speichert Daten ausschließlich lokal auf deinem Endgerät (LocalStorage). Es werden keine Daten an externe Server übertragen.</p><p><strong>2. Datenerfassung</strong></p><p><strong>LocalStorage:</strong> Trainingspläne, Fortschritte und Profilinformationen werden lokal gespeichert.</p><p><strong>Bilder-Upload:</strong> Eigene Profilbilder werden als Base64-String lokal gespeichert.</p><p><strong>3. Cookies</strong></p><p>Kein Tracking, nur Cookie-Hinweis für Zustimmung.</p><p><strong>4. Deine Rechte</strong></p><p>Du kannst alle Daten über "Alle Daten löschen" im Profil entfernen.</p><p><strong>5. Kontakt</strong></p><p>vincent.zubak@googlemail.com</p><p><em>Hinweis: Basis-Text – für volle Rechtssicherheit Generator/Anwalt konsultieren.</em></p>`; }
 }
-}
+function closeLegalModal() { document.getElementById('legalModal').classList.remove('active'); }
+function showLegalModal(type) { document.getElementById('cookieBanner').style.display = 'none'; openLegalModal(type); }
 
-function closeLegalModal() { 
-document.getElementById('legalModal').classList.remove('active'); 
-}
+// ==================== TUTORIAL ====================
+function showTutorial(name, html) { document.getElementById('tutorialTitle').textContent = name; document.getElementById('tutorialContent').innerHTML = html; document.getElementById('tutorialModal').classList.add('active'); }
+function closeTutorialModal() { document.getElementById('tutorialModal').classList.remove('active'); }
 
-function showLegalModal(type) { 
-document.getElementById('cookieBanner').style.display = 'none'; 
-openLegalModal(type); 
-}
-
-// ==================== 🔥 TIMER FUNKTIONEN ====================
-function initTimer() {
-// Timer wird initialisiert aber nicht gestartet
-timerSeconds = 60;
-timerInitialSeconds = 60;
-updateTimerDisplay();
-}
-
-function showTimer() {
-document.getElementById('timerOverlay').classList.add('active');
-showNotification('⏱️ Pausentimer aktiviert', 'success');
-}
-
-function closeTimer() {
-stopTimer();
-document.getElementById('timerOverlay').classList.remove('active');
-}
-
-function updateTimerDisplay() {
-const display = document.getElementById('timerDisplay');
-const minutes = Math.floor(timerSeconds / 60);
-const seconds = timerSeconds % 60;
-display.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-// 🔥 Visuelle Warnung ab 5 Sekunden
-if (timerSeconds <= 5 && timerSeconds > 0) {
-display.classList.add('urgent');
-} else {
-display.classList.remove('urgent');
-}
-}
-
-function setTimer(seconds) {
-stopTimer();
-timerSeconds = seconds;
-timerInitialSeconds = seconds;
-updateTimerDisplay();
-document.getElementById('timerStartStop').textContent = '▶ Start';
-timerRunning = false;
-showNotification(`⏱️ Timer auf ${seconds} Sekunden gesetzt`, 'success');
-}
-
-function adjustTimer(delta) {
-stopTimer();
-timerSeconds = Math.max(1, timerSeconds + delta);
-updateTimerDisplay();
-document.getElementById('timerStartStop').textContent = '▶ Start';
-timerRunning = false;
-}
-
-function toggleTimer() {
-if (timerRunning) {
-stopTimer();
-} else {
-startTimer();
-}
-}
-
-function startTimer() {
-if (timerRunning) return;
-timerRunning = true;
-document.getElementById('timerStartStop').textContent = '⏸ Pause';
-showNotification('⏱️ Timer gestartet', 'success');
-
-timerInterval = setInterval(() => {
-timerSeconds--;
-updateTimerDisplay();
-
-// 🔥 Vibration ab 5 Sekunden
-if (timerSeconds <= 5 && timerSeconds > 0) {
-if ('vibrate' in navigator) {
-navigator.vibrate(200);
-}
-}
-
-// 🔥 Timer abgeschlossen
-if (timerSeconds <= 0) {
-stopTimer();
-playTimerSound();
-if ('vibrate' in navigator) {
-navigator.vibrate([500, 200, 500, 200, 500]);
-}
-showNotification('⏰ Pause beendet! 💪', 'success');
-timerSeconds = timerInitialSeconds;
-updateTimerDisplay();
-document.getElementById('timerStartStop').textContent = '▶ Start';
-}
-}, 1000);
-}
-
-function stopTimer() {
-if (timerInterval) {
-clearInterval(timerInterval);
-timerInterval = null;
-}
-timerRunning = false;
-document.getElementById('timerStartStop').textContent = '▶ Start';
-}
-
-function resetTimer() {
-stopTimer();
-timerSeconds = timerInitialSeconds;
-updateTimerDisplay();
-document.getElementById('timerStartStop').textContent = '▶ Start';
-showNotification('🔄 Timer zurückgesetzt', 'success');
-}
-
-function playTimerSound() {
-// 🔥 Angenehmer Ton bei 0
-try {
-const audio = document.getElementById('timerAudio');
-if (audio) {
-audio.currentTime = 0;
-audio.play().catch(e => console.log('Audio konnte nicht abgespielt werden:', e));
-}
-
-// Fallback: Web Audio API für angenehmen Ton
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const oscillator = audioContext.createOscillator();
-const gainNode = audioContext.createGain();
-
-oscillator.connect(gainNode);
-gainNode.connect(audioContext.destination);
-
-oscillator.type = 'sine';
-oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
-oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
-oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
-
-gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-
-oscillator.start(audioContext.currentTime);
-oscillator.stop(audioContext.currentTime + 0.5);
-} catch (e) {
-console.log('Ton konnte nicht abgespielt werden:', e);
-}
-}
+// ==================== 🔥 TIMER (OBEN, NICHT SCHLIESSBAR) ====================
+function initTimer() { timerSeconds = 60; timerInitialSeconds = 60; updateTimerDisplay(); }
+function showTimer() { document.getElementById('timerOverlay').classList.add('active'); showNotification('⏱️ Pausentimer aktiviert', 'success'); }
+function updateTimerDisplay() { const display = document.getElementById('timerDisplay'); const minutes = Math.floor(timerSeconds / 60); const seconds = timerSeconds % 60; display.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`; if (timerSeconds <= 5 && timerSeconds > 0) display.classList.add('urgent'); else display.classList.remove('urgent'); }
+function setTimer(seconds) { stopTimer(); timerSeconds = seconds; timerInitialSeconds = seconds; updateTimerDisplay(); document.getElementById('timerStartStop').textContent = '▶ Start'; timerRunning = false; showNotification(`⏱️ Timer auf ${seconds} Sekunden gesetzt`, 'success'); }
+function adjustTimer(delta) { stopTimer(); timerSeconds = Math.max(1, timerSeconds + delta); updateTimerDisplay(); document.getElementById('timerStartStop').textContent = '▶ Start'; timerRunning = false; }
+function toggleTimer() { timerRunning ? stopTimer() : startTimer(); }
+function startTimer() { if (timerRunning) return; timerRunning = true; document.getElementById('timerStartStop').textContent = '⏸ Pause'; showNotification('⏱️ Timer gestartet', 'success'); timerInterval = setInterval(() => { timerSeconds--; updateTimerDisplay(); if (timerSeconds <= 5 && timerSeconds > 0 && 'vibrate' in navigator) navigator.vibrate(200); if (timerSeconds <= 0) { stopTimer(); playTimerSound(); if ('vibrate' in navigator) navigator.vibrate([500,200,500,200,500]); showNotification('⏰ Pause beendet! 💪', 'success'); timerSeconds = timerInitialSeconds; updateTimerDisplay(); document.getElementById('timerStartStop').textContent = '▶ Start'; } }, 1000); }
+function stopTimer() { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } timerRunning = false; document.getElementById('timerStartStop').textContent = '▶ Start'; }
+function resetTimer() { stopTimer(); timerSeconds = timerInitialSeconds; updateTimerDisplay(); document.getElementById('timerStartStop').textContent = '▶ Start'; showNotification('🔄 Timer zurückgesetzt', 'success'); }
+function playTimerSound() { try { const audio = document.getElementById('timerAudio'); if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log('Audio:', e)); } const audioContext = new (window.AudioContext || window.webkitAudioContext)(); const oscillator = audioContext.createOscillator(); const gainNode = audioContext.createGain(); oscillator.connect(gainNode); gainNode.connect(audioContext.destination); oscillator.type = 'sine'; oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); gainNode.gain.setValueAtTime(0.3, audioContext.currentTime); gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5); oscillator.start(audioContext.currentTime); oscillator.stop(audioContext.currentTime + 0.5); } catch (e) { console.log('Ton:', e); } }
 </script>
 </body>
 </html>
